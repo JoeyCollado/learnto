@@ -36,14 +36,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header>
-        <SignedOut>
+        <header className="border-b-2 mb-5">
+          <SignedOut>
+            <div className="flex flex-row-reverse m-2">
+              <div className="border-2 px-2  hover:bg-slate-600">
             <SignInButton />
+            </div>
+            </div>
           </SignedOut>
           <SignedIn>
-            <div className="flex justify-between m-2">
+            <div className="flex justify-end gap-5 m-2">
+            <div className="">
             <UserButton />
+            </div>
+            <div className="border-2 px-2 hover:bg-slate-600 h-7">
             <SignOutButton/>
+            </div>
             </div>
           </SignedIn>
         </header>

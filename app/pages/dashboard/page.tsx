@@ -1,11 +1,45 @@
-import React from 'react'
+"use client";
+
+import React from "react";
+import ThemeToggle from "@/app/components/ThemeToggle";
+import { useEffect, useState } from "react";
+import Sidebar from "@/app/components/Sidebar";
 
 const Page = () => {
-  return (
-    <div className='text-4xl text-center'>
-      You now have access to protected Route!
-    </div>
-  )
-}
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-export default Page
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === "dark");
+      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    } else {
+      setIsDarkMode(prefersDarkMode);
+      document.documentElement.classList.toggle("dark", prefersDarkMode);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+    const newTheme = !isDarkMode ? "dark" : "light";
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
+
+  return (
+    <>
+      <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+      <div className="text-4xl text-center">
+        You now have access to protected Route!
+      </div>
+
+      <Sidebar/>
+    </>
+  );
+};
+
+export default Page;
