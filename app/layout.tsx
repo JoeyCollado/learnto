@@ -10,6 +10,8 @@ import {
   SignOutButton,
 } from '@clerk/nextjs'
 
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -36,20 +38,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="border-b-2 mb-5">
+        <header className="mb-5 z-20">
           <SignedOut>
-            <div className="flex flex-row-reverse m-2">
-              <div className="border-2 px-2  hover:bg-slate-600">
+            <div className="flex flex-row-reverse m-2 z-20">
+              <div className={`border-2 rounded-xl border-blue-950 px-2 z-20 mr-4`}>
             <SignInButton />
             </div>
             </div>
           </SignedOut>
           <SignedIn>
-            <div className="flex justify-end gap-5 m-2">
-            <div className="">
+            <div className="flex justify-end gap-5 m-2 z-20">
+            <div className="z-20">
             <UserButton />
             </div>
-            <div className="border-2 px-2 hover:bg-slate-600 h-7">
+            <div className="border-2 rounded-xl border-r-2 px-2 h-7 z-20 mr-4">
             <SignOutButton/>
             </div>
             </div>

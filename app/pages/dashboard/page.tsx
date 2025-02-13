@@ -4,6 +4,7 @@ import React from "react";
 import ThemeToggle from "@/app/components/ThemeToggle";
 import { useEffect, useState } from "react";
 import Sidebar from "@/app/components/Sidebar";
+import Navbar from "@/app/components/Navbar";
 
 const Page = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
@@ -32,12 +33,12 @@ const Page = () => {
 
   return (
     <>
+      <Navbar isDarkMode={isDarkMode}/>
       <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <div className="text-4xl text-center">
         You now have access to protected Route!
       </div>
-
-      <Sidebar/>
+   
     </>
   );
 };
