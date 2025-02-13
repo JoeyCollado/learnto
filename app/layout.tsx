@@ -9,6 +9,7 @@ import {
   UserButton,
   SignOutButton,
 } from '@clerk/nextjs'
+import { ThemeProvider } from "./components/theme-context";
 
 
 
@@ -34,6 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
+       <ThemeProvider>
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -59,9 +61,13 @@ export default function RootLayout({
             </div>
           </SignedIn>
         </header>
+         
         {children}
+       
+      
       </body>
     </html>
+    </ThemeProvider>
     </ClerkProvider>
   );
 }
