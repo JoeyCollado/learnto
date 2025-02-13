@@ -2,10 +2,8 @@
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import ThemeToggle from "./components/ThemeToggle";
 import { useState } from "react";
-import Navbar from "./components/Navbar";
-import Navbar2 from "./components/Navbar2";
+import Footer from "./components/Footer";
 
 export default function HomePage() {
   const { isSignedIn } = useUser();
@@ -41,10 +39,11 @@ export default function HomePage() {
 
   return (
     <>
-    <div className="mt-20">
+    <div className="mt-20 h-screen">
       <h1 className="text-7xl text-center font-bold">LearnTo</h1>
       <p className="text-center">Sign in to access more features.</p>
     </div>
+    <Footer/>
     </>
   );
 }

@@ -43,8 +43,8 @@ export default function RootLayout({
         <header className="mb-5 z-20 transition-all duration-300 ease-in-out">
           <SignedOut>
             <div className="flex flex-row-reverse m-2 z-20 transition-all duration-300 ease-in-out">
-              <div className={` rounded-md px-2 z-20 mr-4 hover:text-blue-700 transition-all duration-300 ease-in-out`}>
-                <div className="text-2xl text-center font-bold flex  transition-all duration-300 ease-in-out border-r-2 border-l-2 rounded-md px-2">
+              <div className={` rounded-md px-2 z-20  hover:text-blue-700 transition-all duration-300 ease-in-out`}>
+                <div className="text-2xl text-center font-bold flex  transition-all duration-300 ease-in-out border-r-2 border-l-2 rounded-md px-2 mt-2">
             <SignInButton />
                 </div>
             </div>
