@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import ThemeToggle from "./components/ThemeToggle";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
+import Navbar2 from "./components/Navbar2";
 
 export default function HomePage() {
   const { isSignedIn } = useUser();
@@ -40,10 +41,8 @@ export default function HomePage() {
 
   return (
     <>
-    <Navbar isDarkMode={isDarkMode}/>
-    <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
     <div className="mt-20">
-      <h1 className="text-4xl text-center">Welcome to My Website</h1>
+      <h1 className="text-7xl text-center font-bold">LearnTo</h1>
       <p className="text-center">Sign in to access more features.</p>
     </div>
     </>

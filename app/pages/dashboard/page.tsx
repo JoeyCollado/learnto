@@ -3,7 +3,7 @@
 import React from "react";
 import ThemeToggle from "@/app/components/ThemeToggle";
 import { useEffect, useState } from "react";
-import Sidebar from "@/app/components/Sidebar";
+
 import Navbar from "@/app/components/Navbar";
 
 const Page = () => {
@@ -35,8 +35,8 @@ const Page = () => {
     <>
       <Navbar isDarkMode={isDarkMode}/>
       <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-      <div className="text-4xl text-center">
-        You now have access to protected Route!
+      <div className="text-4xl text-center mt-20">
+        Dashboard
       </div>
    
     </>
