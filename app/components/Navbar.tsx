@@ -21,12 +21,8 @@ const Navbar: React.FC = () => {
           <Link href="dashboard">
             <li className="hover:text-blue-700 transition-all duration-300 ease-in-out">Home</li>
           </Link>
-          <Link href="quizJoin">
-            <li className="hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out">Join Quiz</li>
-            <li className="md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out">Join</li>
-          </Link>
           <Link href="quizArchive">
-            <li className="hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out">Quiz Archive</li>
+            <li className="hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out">Quiz Library</li>
             <li className="md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out">Archive</li>
           </Link>
           <Link href="quizCreate">

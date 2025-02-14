@@ -34,8 +34,26 @@ const page = () => {
     <>
     <Navbar isDarkMode={isDarkMode}/>
     <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
-    <div className='text-center text-4xl mt-20'>
-      Quiz Archive
+    <div className=''>
+     <span className='text-3xl'>Library</span>
+
+     <div className='flex flex-col h-screen w-fit bg-slate-600  rounded-md p-2'>
+
+      <ul className=''>
+        <li>Quiz Created</li>
+        <li>Quiz Created</li>
+        <li>Quiz Created</li>
+        <li>Quiz Created</li>
+      </ul>
+     </div>
+
+     <div className='absolute flex-row ml-20'>
+      <ul className=''>
+        <li>Completed</li>
+        <li>Drafts</li>
+        <li>Archived</li>
+      </ul>
+     </div>
     </div>
     </>
   )
