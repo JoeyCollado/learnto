@@ -2,8 +2,9 @@
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useState } from "react";
+
 import Footer from "./components/Footer";
+import ThemeToggle2 from "./components/ThemeToggle2";
 
 export default function HomePage() {
   const { isSignedIn } = useUser();
@@ -15,35 +16,14 @@ export default function HomePage() {
     }
   }, [isSignedIn, router]);
 
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === "dark");
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    } else {
-      setIsDarkMode(prefersDarkMode);
-      document.documentElement.classList.toggle("dark", prefersDarkMode);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    setIsDarkMode((prev) => !prev);
-    const newTheme = !isDarkMode ? "dark" : "light";
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-  };
-
   return (
     <>
-    <div className="mt-20 h-screen">
-      <h1 className="text-7xl text-center font-bold">LearnTo</h1>
-      <p className="text-center">Sign in to access more features.</p>
-    </div>
-    <Footer/>
+    <ThemeToggle2/>
+      <div className="mt-20 h-screen">
+        <h1 className="text-7xl text-center font-bold">LearnTo</h1>
+        <p className="text-center">Sign in to access more features.</p>
+      </div>
+      <Footer />
     </>
   );
 }
