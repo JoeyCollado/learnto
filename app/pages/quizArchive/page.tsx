@@ -33,8 +33,7 @@ const page = () => {
     };
   return (
     <>
-    <Navbar isDarkMode={isDarkMode}/>
-    <Sidebar/>
+   
     <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
     
     </>
