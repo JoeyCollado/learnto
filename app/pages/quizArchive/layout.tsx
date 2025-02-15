@@ -1,0 +1,17 @@
+"use client";
+
+import Navbar from "@/app/components/Navbar";
+import Sidebar from "@/app/components/Sidebar";
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="z-50">
+      <Navbar />
+      <div className="fixed">
+        <Sidebar />
+      </div>
+
+      <main>{children}</main>
+    </div>
+  );
+}

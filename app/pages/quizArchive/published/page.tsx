@@ -1,14 +1,10 @@
-"use client"
-import Navbar from '@/app/components/Navbar'
-import Sidebar from '@/app/components/Sidebar'
+
 import React from 'react'
 
 const page = () => {
   return (
     <>
-    <Navbar/>
-    <Sidebar/>
-    <div className=''>
+    <div className='z-10 ml-[30%] w-[300px] h-[500px] bg-slate-500'>
       published
     </div>
     </>
