@@ -19,10 +19,10 @@ const Sidebar = () => {
         </div>
         
         <ul className='mt-20 space-y-20 px-4'>
-          <li><Link href="#" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Published</span></Link></li>
-          <li><Link href="#" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Drafts</span></Link></li>
-          <li><Link href="#" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Archived</span></Link></li>
-          <li><Link href="#" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Collections</span></Link></li>
+          <li><Link href="/pages/quizArchive/published" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Published</span></Link></li>
+          <li><Link href="/pages/quizArchive/drafts" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Drafts</span></Link></li>
+          <li><Link href="/pages/quizArchive/archived" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Archived</span></Link></li>
+          <li><Link href="/pages/quizArchive/collections" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Collections</span></Link></li>
         </ul>
       </div>
 
