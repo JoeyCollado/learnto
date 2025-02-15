@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
           <Link href="/pages/dashboard">
             <li className="hover:text-blue-700 transition-all duration-300 ease-in-out">Home</li>
           </Link>
-          <Link href="/pages/quizArchive">
+          <Link href="/pages/quizArchive/published">
             <li className="hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out">Quiz Library</li>
             <li className="md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out">Archive</li>
           </Link>
