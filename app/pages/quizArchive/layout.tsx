@@ -7,11 +7,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="z-50">
       <Navbar />
-      <div className="fixed">
-        <Sidebar />
-      </div>
 
       <main>{children}</main>
+      <Sidebar />
     </div>
   );
 }

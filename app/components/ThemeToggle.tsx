@@ -10,7 +10,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className={`absolute top-[25px] mr-36 right-6 md:top-[25px] md:right-auto md:left-72 w-9 h-[20px] ${
+      className={`absolute top-[25px] mr-36 right-10 md:top-[25px] md:right-auto md:left-72 w-9 h-[20px] ${
         isDarkMode ? "bg-white" : "bg-black"
       } rounded-lg z-50 flex items-center px-1 transition-all duration-300 border-2 ${
         isDarkMode ? "border-yellow-500" : "border-blue-500"

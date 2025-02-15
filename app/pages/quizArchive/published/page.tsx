@@ -4,8 +4,9 @@ import React from 'react'
 const page = () => {
   return (
     <>
-    <div className='z-10 ml-[30%] w-[300px] h-screen bg-slate-500 rounded-md'>
-      published
+
+    <div className=' md:ml-[25%] absolute md:w-3/5 w-screen h-screen bg-slate-500 rounded-md'>
+    
     </div>
     </>
   )
