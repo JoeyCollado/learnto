@@ -18,14 +18,14 @@ const Navbar: React.FC = () => {
       <div className="items">
         <span className="flex-row absolute font-bold text-3xl hidden md:block top-0 mt-[16px] ml-16">LearnTo</span>
         <ul className="flex flex-row md:gap-20 gap-7 md:ml-96">
-          <Link href="dashboard">
+          <Link href="/pages/dashboard">
             <li className="hover:text-blue-700 transition-all duration-300 ease-in-out">Home</li>
           </Link>
-          <Link href="quizArchive">
+          <Link href="/pages/quizArchive">
             <li className="hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out">Quiz Library</li>
             <li className="md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out">Archive</li>
           </Link>
-          <Link href="quizCreate">
+          <Link href="/pages/quizCreate">
             <li className="hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out">Create Quiz</li>
             <li className="md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out">Create</li>
           </Link>
