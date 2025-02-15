@@ -2,6 +2,7 @@
 
 import Navbar from '@/app/components/Navbar'
 import ThemeToggle from '@/app/components/ThemeToggle';
+import Sidebar from '@/app/components/Sidebar';
 import React from 'react'
 import { useState, useEffect } from 'react';
 
@@ -33,28 +34,9 @@ const page = () => {
   return (
     <>
     <Navbar isDarkMode={isDarkMode}/>
+    <Sidebar/>
     <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
-    <div className=''>
-     <span className='text-3xl'>Library</span>
-
-     <div className='flex flex-col h-screen w-fit bg-slate-600  rounded-md p-2'>
-
-      <ul className=''>
-        <li>Quiz Created</li>
-        <li>Quiz Created</li>
-        <li>Quiz Created</li>
-        <li>Quiz Created</li>
-      </ul>
-     </div>
-
-     <div className='absolute flex-row ml-20'>
-      <ul className=''>
-        <li>Completed</li>
-        <li>Drafts</li>
-        <li>Archived</li>
-      </ul>
-     </div>
-    </div>
+    
     </>
   )
 }
