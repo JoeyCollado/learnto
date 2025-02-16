@@ -3,16 +3,17 @@ import React from "react";
 const quizzes = [
   {
     id: 1,
-    image: "https://via.placeholder.com/100",
+    image: "/jakeeeeee.png",
     title: "Sample Quiz 1",
     questions: 10,
     subject: "Mathematics",
     dateCreated: "2025-02-14",
     creator: "John Doe",
   },
+  
   {
     id: 2,
-    image: "https://via.placeholder.com/100",
+    image: "/jakeeeeee.png",
     title: "Science Basics",
     questions: 15,
     subject: "Science",
@@ -21,18 +22,19 @@ const quizzes = [
   },
   {
     id: 3,
-    image: "https://via.placeholder.com/100",
+    image: "/jakeeeeee.png",
     title: "History Trivia",
     questions: 8,
     subject: "History",
     dateCreated: "2025-02-12",
     creator: "Alice Johnson",
   },
+  
 ];
 
 const QuizCard = ({ quiz }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+    <div className="bg-slate-300 rounded-lg shadow-md p-4 flex flex-col items-center">
       <img src={quiz.image} alt={quiz.title} className="w-24 h-24 rounded-full mb-3" />
       <h2 className="text-lg font-semibold">{quiz.title}</h2>
       <p className="text-gray-600">{quiz.subject}</p>
