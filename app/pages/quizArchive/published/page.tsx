@@ -57,7 +57,7 @@ const PublishedQuizzes = () => {
 
 const Page = () => {
   return (
-    <div className='md:ml-[25%] absolute md:w-3/5 w-screen h-screen bg-slate-600 rounded-md p-6 overflow-auto'>
+    <div className='md:ml-[25%] absolute md:w-3/5 w-screen h-[600px] mt-4 bg-slate-600 rounded-md p-6 overflow-auto'>
       <PublishedQuizzes />
     </div>
   );
