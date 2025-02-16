@@ -1,0 +1,57 @@
+[
+    {
+      "id": 1,
+      "image": "/jakeeeeee.png",
+      "title": "Sample Quiz 1",
+      "questions": 10,
+      "subject": "Mathematics",
+      "dateCreated": "2025-02-14",
+      "creator": "John Doe"
+    },
+    {
+      "id": 2,
+      "image": "/jakeeeeee.png",
+      "title": "Science Basics",
+      "questions": 15,
+      "subject": "Science",
+      "dateCreated": "2025-02-13",
+      "creator": "Jane Smith"
+    },
+    {
+      "id": 3,
+      "image": "/jakeeeeee.png",
+      "title": "Science Basics",
+      "questions": 15,
+      "subject": "Science",
+      "dateCreated": "2025-02-13",
+      "creator": "Jane Smith"
+    },
+    {
+      "id": 4,
+      "image": "/jakeeeeee.png",
+      "title": "Science Basics",
+      "questions": 15,
+      "subject": "Science",
+      "dateCreated": "2025-02-13",
+      "creator": "Jane Smith"
+    },
+    {
+      "id": 5,
+      "image": "/jakeeeeee.png",
+      "title": "Science Basics",
+      "questions": 15,
+      "subject": "Science",
+      "dateCreated": "2025-02-13",
+      "creator": "Jane Smith"
+    },
+    {
+      "id": 6,
+      "image": "/jakeeeeee.png",
+      "title": "Science Basics",
+      "questions": 15,
+      "subject": "Science",
+      "dateCreated": "2025-02-13",
+      "creator": "Jane Smith"
+    }
+  ]
+  
