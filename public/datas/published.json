@@ -52,6 +52,15 @@
       "subject": "Science",
       "dateCreated": "2025-02-13",
       "creator": "Jane Smith"
+    },
+    {
+      "id": 7,
+      "image": "/jakeeeeee.png",
+      "title": "Science Basics",
+      "questions": 15,
+      "subject": "Science",
+      "dateCreated": "2025-02-13",
+      "creator": "Jane Smith"
     }
   ]
   
