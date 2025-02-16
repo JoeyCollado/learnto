@@ -15,8 +15,8 @@ const PublishedQuizzes = () => {
 
   return (
     <div className="absolute md:ml-[25%] md:w-3/5 mt-3 w-screen h-[600px] bg-slate-600 rounded-md p-6">
-      {/* Scrollable container */}
-      <div className="overflow-y-auto max-h-full pr-4 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+      {/* Scrollable container with hidden scrollbar */}
+      <div className="overflow-y-auto max-h-full custom-scroll">
         {/* Responsive grid layout for quiz cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {quizzes.map((quiz) => (
