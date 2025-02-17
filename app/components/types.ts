@@ -6,5 +6,6 @@ export interface Quiz {
     subject: string;
     dateCreated: string;
     creator: string;
+    time: number;
   }
   

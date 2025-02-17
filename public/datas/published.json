@@ -6,7 +6,9 @@
       "questions": 10,
       "subject": "Mathematics",
       "dateCreated": "2025-02-14",
-      "creator": "John Doe"
+      "creator": "John Doe",
+      "time": 10
+
     },
     {
       "id": 2,
@@ -15,7 +17,9 @@
       "questions": 15,
       "subject": "Science",
       "dateCreated": "2025-02-13",
-      "creator": "Jane Smith"
+      "creator": "Jane Smith",
+      "time": 10
+
     },
     {
       "id": 3,
@@ -24,7 +28,9 @@
       "questions": 15,
       "subject": "Science",
       "dateCreated": "2025-02-13",
-      "creator": "Jane Smith"
+      "creator": "Jane Smith",
+      "time": 10
+
     },
     {
       "id": 4,
@@ -33,7 +39,9 @@
       "questions": 15,
       "subject": "Science",
       "dateCreated": "2025-02-13",
-      "creator": "Jane Smith"
+      "creator": "Jane Smith",
+      "time": 10
+
     },
     {
       "id": 5,
@@ -42,7 +50,9 @@
       "questions": 15,
       "subject": "Science",
       "dateCreated": "2025-02-13",
-      "creator": "Jane Smith"
+      "creator": "Jane Smith",
+      "time": 10
+
     },
     {
       "id": 6,
@@ -51,7 +61,9 @@
       "questions": 15,
       "subject": "Science",
       "dateCreated": "2025-02-13",
-      "creator": "Jane Smith"
+      "creator": "Jane Smith",
+      "time": 10
+
     },
     {
       "id": 7,
@@ -60,7 +72,8 @@
       "questions": 15,
       "subject": "Science",
       "dateCreated": "2025-02-13",
-      "creator": "Jane Smith"
+      "creator": "Jane Smith",
+      "time": 10
     }
   ]
   

@@ -8,8 +8,8 @@ const QuizCard = ({ quiz }: { quiz: Quiz }) => {
       <h2 className="text-lg font-bold mt-2">{quiz.title}</h2>
       <p className="text-gray-600">Subject: {quiz.subject}</p>
       <p className="text-gray-600">Questions: {quiz.questions}</p>
-      <p className="text-gray-400 text-sm">Created by: {quiz.creator}</p>
-      <p className="text-gray-400 text-sm">Date: {quiz.dateCreated}</p>
+      <p className="text-gray-600 text-sm">Time limit:{quiz.time}</p>
+      <p className="text-gray-600 text-sm">Date: {quiz.dateCreated}</p>
     </div>
   );
 };
