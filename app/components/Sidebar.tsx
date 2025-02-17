@@ -9,7 +9,7 @@ const Sidebar = () => {
     <>
       {/* Vertical Sidebar */}
       <div 
-        className={`h-screen bg-slate-700 text-white transition-all duration-300 ${isOpen ? 'w-60' : 'w-20'} rounded-r-xl flex flex-col py-5 relative hidden md:flex`}
+        className={`h-screen bg-slate-700 text-white transition-all duration-300 ${isOpen ? 'w-60' : 'w-20'} rounded-r-xl flex flex-col py-5 relative hidden md:flex `}
       >
         <div className='flex items-center justify-between px-4'>
           <span className={`text-4xl font-bold transition-all duration-300 ${!isOpen && 'hidden'}`}>Library</span>
@@ -18,16 +18,16 @@ const Sidebar = () => {
           </button>
         </div>
         
-        <ul className='mt-20 space-y-20 px-4'>
-          <li><Link href="/pages/quizArchive/published" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Published</span></Link></li>
-          <li><Link href="/pages/quizArchive/drafts" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Drafts</span></Link></li>
-          <li><Link href="/pages/quizArchive/archived" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Archived</span></Link></li>
-          <li><Link href="/pages/quizArchive/collections" className='flex items-center gap-3'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Collections</span></Link></li>
+        <ul className='mt-20 space-y-20 px-4 '>
+          <li><Link href="/pages/quizArchive/published" className='flex items-center gap-3 hover:bg-blue-700'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Published</span></Link></li>
+          <li><Link href="/pages/quizArchive/drafts" className='flex items-center gap-3 hover:bg-blue-700'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Drafts</span></Link></li>
+          <li><Link href="/pages/quizArchive/archived" className='flex items-center gap-3 hover:bg-blue-700'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Archived</span></Link></li>
+          <li><Link href="/pages/quizArchive/collections" className='flex items-center gap-3 hover:bg-blue-700'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Collections</span></Link></li>
         </ul>
       </div>
 
       {/* Bottom Horizontal Sidebar (for small screens) */}
-      <div className='fixed bottom-0 left-0 w-full bg-slate-700 text-white flex justify-around py-3 md:hidden'>
+      <div className='fixed bottom-0 left-0 w-full bg-slate-700 text-white flex justify-around py-3 md:hidden '>
         <Link href="#" className='flex flex-col items-center'><Menu size={20} /><span>Published</span></Link>
         <Link href="#" className='flex flex-col items-center'><Menu size={20} /><span>Drafts</span></Link>
         <Link href="#" className='flex flex-col items-center'><Menu size={20} /><span>Archived</span></Link>
