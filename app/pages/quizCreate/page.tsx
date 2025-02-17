@@ -30,6 +30,8 @@ const page = () => {
     <div className='text-center text-4xl mt-20 h-screen'>
      
         <button className='transition-all duration-300 ease-in-out align-middle justify-center bg-slate-600 px-2 rounded-md py-3 hover:bg-blue-700'>+ Create Quiz</button>
+
+        <button className='transition-all duration-300 ease-in-out align-middle justify-center bg-slate-600 px-2 rounded-md py-3 hover:bg-blue-700'>+ Create Quiz With Ai</button>
     
     </div>
     </>
