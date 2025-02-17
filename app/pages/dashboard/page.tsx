@@ -24,19 +24,11 @@ const Page = () => {
     }
   }, []);
 
-  const toggleTheme = () => {
-    setIsDarkMode((prev) => !prev);
-    const newTheme = !isDarkMode ? "dark" : "light";
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-  };
-
   return (
     <>
       <Navbar isDarkMode={isDarkMode}/>
-      <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-      <div className="text-4xl text-center mt-20">
-        Dashboard
+      <div className="text-6xl text-center mt-20 h-screen">
+        LearnTo
       </div>
    
     </>
