@@ -31,7 +31,7 @@ const Page = () => {
       <div className="text-6xl text-center mt-20 h-screen">
         LearnTo
       </div>
-   <Footer/>
+      <Footer/>
     </>
   );
 };
