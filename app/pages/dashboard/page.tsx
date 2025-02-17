@@ -5,6 +5,7 @@ import ThemeToggle from "@/app/components/ThemeToggle";
 import { useEffect, useState } from "react";
 
 import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 
 const Page = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
@@ -30,7 +31,7 @@ const Page = () => {
       <div className="text-6xl text-center mt-20 h-screen">
         LearnTo
       </div>
-   
+   <Footer/>
     </>
   );
 };
