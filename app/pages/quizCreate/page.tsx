@@ -1,7 +1,6 @@
 "use client";
 
 import Navbar from '@/app/components/Navbar'
-import ThemeToggle from '@/app/components/ThemeToggle';
 import React from 'react'
 import { useState, useEffect } from 'react';
 
@@ -24,17 +23,11 @@ const page = () => {
       }
     }, []);
   
-    const toggleTheme = () => {
-      setIsDarkMode((prev) => !prev);
-      const newTheme = !isDarkMode ? "dark" : "light";
-      localStorage.setItem("theme", newTheme);
-      document.documentElement.classList.toggle("dark", newTheme === "dark");
-    };
+  
   return (
     <>
     <Navbar isDarkMode={isDarkMode}/>
-    <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
-    <div className='text-center text-4xl mt-20'>
+    <div className='text-center text-4xl mt-20 h-screen'>
       Create quiz here
     </div>
     </>
