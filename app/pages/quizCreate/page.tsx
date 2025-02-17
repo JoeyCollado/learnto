@@ -28,7 +28,9 @@ const page = () => {
     <>
     <Navbar isDarkMode={isDarkMode}/>
     <div className='text-center text-4xl mt-20 h-screen'>
-      Create quiz here
+     
+        <button className='align-middle justify-center bg-slate-600 px-2 rounded-md py-2 hover:bg-blue-700'>+ Create Quiz</button>
+    
     </div>
     </>
   )
