@@ -28,9 +28,8 @@ const page = () => {
     <>
     <Navbar isDarkMode={isDarkMode}/>
     <div className='text-center text-4xl mt-20 h-screen'>
-     <div className='flex flex-col w-56 gap-10 ml-[30%] md:ml-[40%]'>
-        <button className='transition-all duration-300 ease-in-out align-middle justify-center bg-slate-600 px-3 rounded-md py-3 hover:bg-blue-700'>+ Create </button>
-        <button className='transition-all duration-300 ease-in-out align-middle justify-center bg-slate-600 px-3 rounded-md py-3 hover:bg-blue-700'>+ Generate </button>
+     <div className='bg-slate-500 w-[90%] ml-[5%] h-[90%] rounded-lg mb-[5%]'>
+        
         </div>
     </div>
     </>
