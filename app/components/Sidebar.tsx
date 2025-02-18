@@ -18,11 +18,11 @@ const Sidebar = () => {
           </button>
         </div>
         
-        <ul className='mt-20 space-y-20 px-4 '>
-          <li><Link href="/pages/quizArchive/published" className='flex items-center gap-3 hover:bg-blue-700'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Published</span></Link></li>
-          <li><Link href="/pages/quizArchive/drafts" className='flex items-center gap-3 hover:bg-blue-700'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Drafts</span></Link></li>
-          <li><Link href="/pages/quizArchive/archived" className='flex items-center gap-3 hover:bg-blue-700'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Archived</span></Link></li>
-          <li><Link href="/pages/quizArchive/collections" className='flex items-center gap-3 hover:bg-blue-700'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Collections</span></Link></li>
+        <ul className='mt-20 space-y-20 px-6 '>
+          <li><Link href="/pages/quizArchive/published" className='flex items-center gap-3 hover:bg-blue-700 hover:px-2 py-2 rounded-md'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Published</span></Link></li>
+          <li><Link href="/pages/quizArchive/drafts" className='flex items-center gap-3 hover:bg-blue-700 hover:px-2 py-2 rounded-md'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Drafts</span></Link></li>
+          <li><Link href="/pages/quizArchive/archived" className='flex items-center gap-3 hover:bg-blue-700 hover:px-2 py-2 rounded-md'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Archived</span></Link></li>
+          <li><Link href="/pages/quizArchive/collections" className='flex items-center gap-3 hover:bg-blue-700 hover:px-2 py-2 rounded-md'><Menu size={20} /><span className={`${!isOpen && 'hidden'}`}>Collections</span></Link></li>
         </ul>
       </div>
 
