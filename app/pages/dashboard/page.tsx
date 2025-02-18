@@ -27,7 +27,7 @@ const Page = () => {
   return (
     <>
       <Navbar isDarkMode={isDarkMode}/>
-      <div className="md:text-9xl text-7xl text-center mt-20 h-screen">
+      <div className="md:text-8xl text-7xl text-center mt-20 h-screen">
         LearnTo
       </div>
       <Footer/>

@@ -27,11 +27,10 @@ const page = () => {
   return (
     <>
     <Navbar isDarkMode={isDarkMode}/>
-    <div className='text-center text-4xl mt-20 h-screen'>
-     <div className='bg-slate-500 w-[90%] ml-[5%] h-[90%] rounded-lg mb-[5%]'>
-        
-        </div>
-    </div>
+   
+   <div className='bg-slate-500 h-screen w-[90%] ml-[5%] mt-20 rounded-lg'>
+    <h1 className='text-center pt-10 text-3xl'>Create Quiz Here</h1>
+   </div>
     </>
   )
 }
