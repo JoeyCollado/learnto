@@ -92,19 +92,19 @@ const Sidebar = () => {
 
       {/* Bottom Horizontal Sidebar (for small screens) */}
       <div className="fixed bottom-0 left-0 w-full bg-slate-700 text-white flex justify-around py-3 md:hidden ">
-        <Link href="#" className="flex flex-col items-center">
+        <Link href="/pages/quizArchive/published" className="flex flex-col items-center">
           <Menu size={20} />
           <span>Published</span>
         </Link>
-        <Link href="#" className="flex flex-col items-center">
+        <Link href="/pages/quizArchive/drafts" className="flex flex-col items-center">
           <Menu size={20} />
           <span>Drafts</span>
         </Link>
-        <Link href="#" className="flex flex-col items-center">
+        <Link href="/pages/quizArchive/archived" className="flex flex-col items-center">
           <Menu size={20} />
           <span>Archived</span>
         </Link>
-        <Link href="#" className="flex flex-col items-center">
+        <Link href="/pages/quizArchive/collections" className="flex flex-col items-center">
           <Menu size={20} />
           <span>Collections</span>
         </Link>
