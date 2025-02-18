@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import ThemeToggle from "@/app/components/ThemeToggle";
 import { useEffect, useState } from "react";
 
 import Navbar from "@/app/components/Navbar";
@@ -28,7 +27,7 @@ const Page = () => {
   return (
     <>
       <Navbar isDarkMode={isDarkMode}/>
-      <div className="text-6xl text-center mt-20 h-screen">
+      <div className="md:text-9xl text-7xl text-center mt-20 h-screen">
         LearnTo
       </div>
       <Footer/>
