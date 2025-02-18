@@ -4,6 +4,7 @@ import React from "react";
 import ThemeToggle from "./ThemeToggle"; // Ensure the correct path
 import Link from "next/link";
 import { useTheme } from "./theme-context";
+import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const { isDarkMode, toggleTheme } = useTheme(); // Use ThemeContext
@@ -16,7 +17,7 @@ const Navbar: React.FC = () => {
     >
       <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       <div className="items">
-        <span className="flex-row absolute font-bold text-3xl hidden md:block top-0 mt-[16px] ml-16">LearnTo</span>
+    <span className="absolute hidden md:block flex-row top-[-30]"><Image src="/learntooo.png" width={200} height={10} alt="learnto image" className=""></Image></span>
         <ul className="flex flex-row md:gap-20 gap-7 md:ml-96">
           <Link href="/pages/dashboard">
             <li className="hover:text-blue-700 transition-all duration-300 ease-in-out">Home</li>
