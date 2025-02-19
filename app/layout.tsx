@@ -52,10 +52,10 @@ export default function RootLayout({
           </SignedOut>
           <SignedIn>
             <div className="flex justify-end gap-5 m-2 z-20">
-            <div className="z-20 mt-[14px]">
+            <div className="z-20 mt-[2px]">
             <UserButton />
             </div>
-            <div className="rounded-md border-r-2 border-l-2 px-1 h-[22px] z-20 mr-4 mt-[17px]  hover:text-blue-700 transition-all duration-300 ease-in-out text-[14px]">
+            <div className="rounded-md border-r-2 border-l-2 px-1 h-[22px] z-20 mr-4 mt-[5px]  hover:text-blue-700 transition-all duration-300 ease-in-out text-[14px]">
             <SignOutButton/>
             </div>
             </div>
