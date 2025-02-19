@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
       }`}
     >
       <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-      <div className="items">
+      <div className="items text-[13px]">
     <span className="absolute md:block flex-row top-[-30] w-[150px] mt-4 md:mt-0 md:w-[200px]"><Image src="/learntooo.png" width={200} height={10} alt="learnto image" className=""></Image></span>
         <ul className="flex flex-row md:gap-20 gap-7 ml-40 md:ml-96">
           <Link href="/pages/dashboard">
