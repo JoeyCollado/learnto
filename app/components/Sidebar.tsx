@@ -92,7 +92,7 @@ const Sidebar = () => {
 
       {/* Bottom Horizontal Sidebar (for small screens) */}
       <div className="fixed bottom-0 left-0 w-full bg-slate-700 text-white flex justify-around py-3 md:hidden text-[10px]">
-        <Link href="/pages/quizArchive/published" className={`flex flex-col items-center rounded-md px-1 py-1 ${
+        <Link href="/pages/quizArchive/published" className={`flex flex-col items-center rounded-md w-[59px] py-1 ${
                 isActive("/pages/quizArchive/published")
                   ? "bg-blue-700"
                   : "hover:bg-blue-700"
@@ -100,7 +100,7 @@ const Sidebar = () => {
           <Menu size={20} />
           <span>Published</span>
         </Link>
-        <Link href="/pages/quizArchive/drafts" className={`flex flex-col items-center rounded-md px-1 py-1 ${
+        <Link href="/pages/quizArchive/drafts" className={`flex flex-col items-center rounded-md w-[59px] py-1 ${
                 isActive("/pages/quizArchive/drafts")
                   ? "bg-blue-700"
                   : "hover:bg-blue-700"
@@ -108,7 +108,7 @@ const Sidebar = () => {
           <Menu size={20} />
           <span>Drafts</span>
         </Link>
-        <Link href="/pages/quizArchive/archived" className={`flex flex-col items-center rounded-md px-1 py-1 ${
+        <Link href="/pages/quizArchive/archived" className={`flex flex-col items-center rounded-md w-[59px] py-1 ${
                 isActive("/pages/quizArchive/archived")
                   ? "bg-blue-700"
                   : "hover:bg-blue-700"
@@ -116,7 +116,7 @@ const Sidebar = () => {
           <Menu size={20} />
           <span>Archived</span>
         </Link>
-        <Link href="/pages/quizArchive/collections" className={`flex flex-col items-center rounded-md px-1 py-1 ${
+        <Link href="/pages/quizArchive/collections" className={`flex flex-col items-center rounded-md w-[59px] py-1 ${
                 isActive("/pages/quizArchive/collections")
                   ? "bg-blue-700"
                   : "hover:bg-blue-700"
