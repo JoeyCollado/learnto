@@ -15,12 +15,12 @@ const Sidebar = () => {
       {/* Vertical Sidebar */}
       <div
         className={`h-screen bg-slate-700 text-white transition-all duration-300 ${
-          isOpen ? "w-60" : "w-20"
+          isOpen ? "w-[200px]" : "w-20"
         } rounded-r-xl flex flex-col py-5 relative hidden md:flex `}
       >
         <div className="flex items-center justify-between px-4">
           <span
-            className={`text-4xl font-bold transition-all duration-300 ${
+            className={`text-3xl ml-2 font-bold transition-all duration-300 ${
               !isOpen && "hidden"
             }`}
           >
