@@ -18,7 +18,7 @@ const PublishedQuizzes = () => {
       {/* Scrollable container with hidden scrollbar */}
       <div className="overflow-y-auto max-h-full custom-scroll">
         {/* Responsive grid layout for quiz cards */}
-        <div className="text-center text-4xl py-2 pb-10">
+        <div className="text-center text-3xl py-2 pb-10">
           Published Quizzes
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
