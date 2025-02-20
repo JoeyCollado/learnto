@@ -34,6 +34,10 @@ const page = () => {
     <div className='buttons flex-row flex gap-2 md:justify-end md:mr-10 justify-center mt-10'>
        <button className='bg-slate-700 px-2 rounded-md py-1 flex '>Publish</button>
        <button className='bg-slate-700 px-2 rounded-md py-1 flex'>Preview</button>
+
+       <div className="absolute">
+        <button>Add Questions</button>
+       </div>
     </div>
 
    </div>
