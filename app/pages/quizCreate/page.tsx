@@ -1,9 +1,11 @@
 "use client";
 
 import Navbar from "@/app/components/Navbar";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 
-const page = () => {
+const Page = () => {
+  const router = useRouter();
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [questions, setQuestions] = useState([
     {
@@ -14,6 +16,9 @@ const page = () => {
   ]);
 
   useEffect(() => {
+    const savedQuestions = localStorage.getItem("questions");
+    if (savedQuestions) setQuestions(JSON.parse(savedQuestions));
+
     const savedTheme = localStorage.getItem("theme");
     const prefersDarkMode = window.matchMedia(
       "(prefers-color-scheme: dark)"
@@ -41,19 +46,22 @@ const page = () => {
         </div>
 
         <div className="flex justify-center mt-4">
-          <button className="bg-slate-700 px-2 rounded-md py-1">
+          <button
+            className="bg-slate-700 px-2 rounded-md py-1"
+            onClick={() => router.push("/pages/quizCreate/addQuestion")}
+          >
             Add Questions
           </button>
         </div>
 
         {/* Questions Container */}
         <div className="questions bg-slate-700 mt-4 p-4 rounded-lg">
-          {questions.map((q) => (
-            <div key={q.id} className=" bg-slate-600 p-4 rounded-lg">
+          {questions.map((q, index) => (
+            <div key={index} className="bg-slate-600 p-4 rounded-lg">
               <h2 className="text-lg font-semibold">{q.question}</h2>
               <ul className="mt-2">
-                {q.options.map((option, index) => (
-                  <li key={index} className="ml-4">
+                {q.options.map((option, idx) => (
+                  <li key={idx} className="ml-4">
                     {option}
                   </li>
                 ))}
@@ -66,4 +74,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
