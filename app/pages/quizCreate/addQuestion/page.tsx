@@ -47,7 +47,7 @@ const AddQuestion = () => {
     savedQuestions.push(newQuestion);
     localStorage.setItem("questions", JSON.stringify(savedQuestions));
 
-    router.push("/quizCreate");
+    router.push("/pages/quizCreate");
   };
 
   return (

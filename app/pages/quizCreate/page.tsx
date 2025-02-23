@@ -65,10 +65,14 @@ const Page = () => {
           {questions.length === 0 ? (
             <p className="text-center text-gray-300">No questions added yet.</p>
           ) : (
-            questions.map((q) => (
-              <div key={q.id} className="bg-slate-600 p-4 rounded-lg mb-3">
+            questions.map((q, index) => (
+              <div key={q.id} className="bg-slate-600 p-6 rounded-lg mb-6">
                 <div className="flex justify-between items-center">
-                  <h2 className="text-lg font-semibold">{q.question}</h2>
+                  {/* Unique Question Number */}
+                  <h2 className="text-lg font-semibold">
+                    <span className="text-gray-300 mr-2">Q{index + 1}.</span>
+                    {q.question}
+                  </h2>
                   <button
                     className="bg-red-500 px-3 py-1 rounded-md text-white"
                     onClick={() => handleDeleteQuestion(q.id)}
@@ -76,9 +80,9 @@ const Page = () => {
                     ❌ Delete
                   </button>
                 </div>
-                <ul className="mt-2">
+                <ul className="mt-3 space-y-2">
                   {q.options.map((option, idx) => (
-                    <li key={idx} className="ml-4">
+                    <li key={idx} className="ml-6 text-gray-200">
                       {option}
                     </li>
                   ))}
