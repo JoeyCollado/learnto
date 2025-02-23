@@ -39,10 +39,10 @@ const Page = () => {
     <>
       <Navbar isDarkMode={isDarkMode} />
 
-      {/* Main container with scrollbar */}
+      {/* Main container */}
       <div
         className="bg-slate-500 w-[90%] ml-[5%] mt-20 rounded-lg p-5 overflow-y-auto"
-        style={{ maxHeight: "90vh" }} // Limits height and enables scrolling
+        style={{ maxHeight: "90vh" }} 
       >
         <h1 className="text-center text-3xl">Create Quiz Here</h1>
 
@@ -60,7 +60,7 @@ const Page = () => {
           </button>
         </div>
 
-        {/* Questions Container */}
+        {/* Container */}
         <div className="questions bg-slate-700 mt-4 p-4 rounded-lg">
           {questions.length === 0 ? (
             <p className="text-center text-gray-300">No questions added yet.</p>
