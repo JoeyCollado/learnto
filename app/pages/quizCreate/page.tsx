@@ -74,7 +74,7 @@ const Page = () => {
                     {q.question}
                   </h2>
                   <button
-                    className="bg-red-500 px-3 py-1 rounded-md text-white"
+                    className="bg-red-500 px-2 text-center pr-10 py-1 rounded-md text-white"
                     onClick={() => handleDeleteQuestion(q.id)}
                   >
                     ❌ Delete
@@ -83,7 +83,7 @@ const Page = () => {
                 <ul className="mt-3 space-y-2">
                   {q.options.map((option, idx) => (
                     <li key={idx} className="ml-6 text-gray-200">
-                      {option}
+                      <span className="font-semibold">{String.fromCharCode(65 + idx)}.</span> {option}
                     </li>
                   ))}
                 </ul>
