@@ -39,7 +39,11 @@ const Page = () => {
     <>
       <Navbar isDarkMode={isDarkMode} />
 
-      <div className="bg-slate-500 h-screen mb-[5%] w-[90%] ml-[5%] mt-20 rounded-lg p-5">
+      {/* Main container with scrollbar */}
+      <div
+        className="bg-slate-500 w-[90%] ml-[5%] mt-20 rounded-lg p-5 overflow-y-auto"
+        style={{ maxHeight: "90vh" }} // Limits height and enables scrolling
+      >
         <h1 className="text-center text-3xl">Create Quiz Here</h1>
 
         <div className="buttons flex-row flex gap-2 md:justify-end md:mr-10 justify-center mt-10">
