@@ -15,9 +15,9 @@ const PublishedQuizzes = () => {
 
   return (
     <div className="absolute md:ml-[25%] md:w-3/5 md:mt-3  h-[600px] w-[60%] ml-[20%] bg-slate-600 rounded-md p-6 mt-[5%]">
-      {/* Scrollable container with hidden scrollbar */}
+      {/* Container*/}
       <div className="overflow-y-auto max-h-full custom-scroll">
-        {/* Responsive grid layout for quiz cards */}
+        
         <div className="text-center text-3xl py-2 pb-10">
           Archived Quizzes
         </div>

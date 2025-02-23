@@ -41,7 +41,7 @@ const Page = () => {
 
       {/* Main container */}
       <div
-        className="bg-slate-500 w-[90%] ml-[5%] mt-20 rounded-lg p-5 overflow-y-auto"
+        className="bg-slate-500 w-[90%] ml-[5%] mt-20 rounded-lg p-5 overflow-y-auto   custom-scroll"
         style={{ maxHeight: "90vh" }} 
       >
         <h1 className="text-center text-3xl">Create Quiz Here</h1>
@@ -51,7 +51,7 @@ const Page = () => {
           <button className="bg-slate-700 px-2 rounded-md py-1">Preview</button>
         </div>
 
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-4 ">
           <button
             className="bg-slate-700 px-2 rounded-md py-1"
             onClick={() => router.push("/pages/quizCreate/addQuestion")}
@@ -61,7 +61,7 @@ const Page = () => {
         </div>
 
         {/* Container */}
-        <div className="questions bg-slate-700 mt-4 p-4 rounded-lg">
+        <div className="questions bg-slate-700 mt-4 p-4 rounded-lg ">
           {questions.length === 0 ? (
             <p className="text-center text-gray-300">No questions added yet.</p>
           ) : (
