@@ -104,7 +104,7 @@ const Page = () => {
     <>
       <Navbar isDarkMode={isDarkMode} />
 
-      <div className="bg-slate-500 w-[90%] ml-[5%] mt-20 rounded-lg p-5 overflow-y-auto custom-scroll" style={{ maxHeight: "90vh" }}>
+      <div className="bg-slate-500 w-[90%] ml-[5%] mt-20  mb-[5%] rounded-lg p-5 overflow-y-auto custom-scroll" style={{ maxHeight: "90vh" }}>
         <h1 className="text-center text-3xl">Create Quiz Here</h1>
 
         <div className="buttons flex-row flex gap-2 md:justify-end md:mr-10 justify-center mt-10">
