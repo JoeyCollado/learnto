@@ -20,7 +20,7 @@ const Sidebar = () => {
       >
         <div className="flex items-center justify-between px-4">
           <span
-            className={`text-3xl ml-2 font-bold transition-all duration-300 ${
+            className={`text-3xl ml-4 font-bold transition-all duration-300 ${
               !isOpen && "hidden"
             }`}
           >
@@ -28,7 +28,7 @@ const Sidebar = () => {
           </span>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-lg hover:bg-slate-600"
+            className="p-2 rounded-lg  pl-4"
           >
             {isOpen ? <ChevronLeft /> : <ChevronRight />}
           </button>
