@@ -96,7 +96,7 @@ const Page = () => {
     setQuestions([]);
   
     // Navigate to Published page
-    router.push("/pages/published");
+    router.push("/pages/quizArchive/published");
   };
   
 
