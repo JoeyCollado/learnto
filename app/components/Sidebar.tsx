@@ -15,7 +15,7 @@ const Sidebar = () => {
       {/* Vertical Sidebar */}
       <div
         className={`h-screen mt-[5%] bg-slate-700 text-white transition-all duration-300 ${
-          isOpen ? "w-[200px]" : "w-20"
+          isOpen ? "w-[200px]" : "w-[85px]"
         } rounded-r-xl flex flex-col py-5 relative hidden md:flex `}
       >
         <div className="flex items-center justify-between px-4">
@@ -38,7 +38,7 @@ const Sidebar = () => {
           <li>
             <Link
               href="/pages/quizArchive/published"
-              className={`flex items-center gap-3 hover:bg-blue-700 hover:px-2 py-2 rounded-md ${
+              className={`flex items-center gap-3 hover:bg-blue-700 pl-2 py-2 rounded-md ${
                 isActive("/pages/quizArchive/published")
                   ? "bg-blue-700 px-2 py-2"
                   : "hover:bg-blue-700"
@@ -51,7 +51,7 @@ const Sidebar = () => {
           <li>
             <Link
               href="/pages/quizArchive/drafts"
-              className={`flex items-center gap-3 hover:bg-blue-700 hover:px-2 py-2 rounded-md ${
+              className={`flex items-center gap-3 hover:bg-blue-700 pl-2 py-2 rounded-md ${
                 isActive("/pages/quizArchive/drafts")
                   ? "bg-blue-700 px-2 py-2"
                   : "hover:bg-blue-700"
@@ -64,7 +64,7 @@ const Sidebar = () => {
           <li>
             <Link
               href="/pages/quizArchive/archived"
-              className={`flex items-center gap-3 hover:bg-blue-700 hover:px-2 py-2 rounded-md ${
+              className={`flex items-center gap-3 hover:bg-blue-700 pl-2 py-2 rounded-md ${
                 isActive("/pages/quizArchive/archived")
                   ? "bg-blue-700 px-2 py-2"
                   : "hover:bg-blue-700"
@@ -77,7 +77,7 @@ const Sidebar = () => {
           <li>
             <Link
               href="/pages/quizArchive/collections"
-              className={`flex items-center gap-3 hover:bg-blue-700 hover:px-2 py-2 rounded-md ${
+              className={`flex items-center gap-3 hover:bg-blue-700 pl-2 py-2 rounded-md ${
                 isActive("/pages/quizArchive/collections")
                   ? "bg-blue-700 px-2 py-2"
                   : "hover:bg-blue-700"
