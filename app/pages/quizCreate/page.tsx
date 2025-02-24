@@ -62,9 +62,9 @@ const Page = () => {
         </div>
 
         <div className="flex-col flex text-black gap-2 mt-4">
-          <label>Enter Title: <input className="w-full p-1 rounded-md" type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
-          <label>Enter Subject: <input className="w-full p-1 rounded-md" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
-          <label>Enter Time Limit (in minutes): <input className="w-full p-1 rounded-md" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
+          <label>Enter Title: <br></br><input className="w-fit p-1 rounded-md" type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
+          <label>Enter Subject: <br></br><input className="w-fit p-1 rounded-md" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
+          <label>Enter Time Limit (in minutes): <br></br><input className="w-fit p-1 rounded-md" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
         </div>
 
         <div className="flex justify-center mt-4">
