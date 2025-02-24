@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { Quiz } from "../published/types";
 import QuizCard from "@/app/components/QuizCard";
@@ -7,10 +8,10 @@ const PublishedQuizzes = () => {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
 
   useEffect(() => {
-    fetch("/datas/published.json")
-      .then((res) => res.json())
-      .then((data: Quiz[]) => setQuizzes(data))
-      .catch((error) => console.error("Failed to fetch quizzes:", error));
+    const storedQuizzes = localStorage.getItem("publishedQuizzes");
+    if (storedQuizzes) {
+      setQuizzes(JSON.parse(storedQuizzes));
+    }
   }, []);
 
   return (

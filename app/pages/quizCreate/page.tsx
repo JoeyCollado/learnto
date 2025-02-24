@@ -13,7 +13,7 @@ const Page = () => {
   const [quizTitle, setQuizTitle] = useState("");
   const [quizSubject, setQuizSubject] = useState("");
   const [timeLimit, setTimeLimit] = useState("");
-  const [quizImage, setQuizImage] = useState<string>("");
+  const [quizImage, setQuizImage] = useState("");
 
   useEffect(() => {
     const savedQuestions = localStorage.getItem("questions");
@@ -58,13 +58,47 @@ const Page = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        const base64String = reader.result as string;
-        setQuizImage(base64String);
-        localStorage.setItem("quizImage", base64String);
+        const imageData = reader.result as string;
+        setQuizImage(imageData);
+        localStorage.setItem("quizImage", imageData);
       };
       reader.readAsDataURL(file);
     }
   };
+
+  const handlePublish = () => {
+    const newQuiz = {
+      id: Date.now(),
+      title: quizTitle,
+      subject: quizSubject,
+      time: timeLimit,
+      image: quizImage,
+      questions: questions.length,
+      dateCreated: new Date().toLocaleDateString(),
+    };
+  
+    // Save to localStorage
+    const existingQuizzes = JSON.parse(localStorage.getItem("publishedQuizzes") || "[]");
+    localStorage.setItem("publishedQuizzes", JSON.stringify([...existingQuizzes, newQuiz]));
+  
+    // Clear localStorage for current quiz
+    localStorage.removeItem("quizTitle");
+    localStorage.removeItem("quizSubject");
+    localStorage.removeItem("timeLimit");
+    localStorage.removeItem("quizImage");
+    localStorage.removeItem("questions");
+  
+    // Reset state to initial values
+    setQuizTitle("");
+    setQuizSubject("");
+    setTimeLimit("");
+    setQuizImage("");
+    setQuestions([]);
+  
+    // Navigate to Published page
+    router.push("/pages/published");
+  };
+  
 
   return (
     <>
@@ -74,15 +108,15 @@ const Page = () => {
         <h1 className="text-center text-3xl">Create Quiz Here</h1>
 
         <div className="buttons flex-row flex gap-2 md:justify-end md:mr-10 justify-center mt-10">
-          <button className="bg-slate-700 px-2 rounded-md py-1">Publish</button>
+          <button className="bg-slate-700 px-2 rounded-md py-1" onClick={handlePublish}>Publish</button>
           <button className="bg-slate-700 px-2 rounded-md py-1">Preview</button>
         </div>
 
         <div className="flex-col flex text-black gap-2 mt-4 ml-10">
-          <label>Enter Title: <br /><input className="w-fit p-1 rounded-md" type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
-          <label>Enter Subject: <br /><input className="w-fit p-1 rounded-md" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
-          <label>Enter Time Limit (in minutes): <br /><input className="w-fit p-1 rounded-md" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
-          <label>Upload Image: <br /><input className="w-fit p-1 rounded-md" type="file" accept="image/*" onChange={handleImageUpload} /></label>
+          <label>Enter Title: <br></br><input className="w-fit p-1 rounded-md" type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
+          <label>Enter Subject: <br></br><input className="w-fit p-1 rounded-md" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
+          <label>Enter Time Limit (in minutes): <br></br><input className="w-fit p-1 rounded-md" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
+          <label>Upload Image: <br></br><input type="file" accept="image/*" onChange={handleImageUpload} /></label>
           {quizImage && <img src={quizImage} alt="Quiz Preview" className="mt-2 w-32 h-32 object-cover rounded-md" />}
         </div>
 
