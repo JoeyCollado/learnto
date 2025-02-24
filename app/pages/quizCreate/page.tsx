@@ -13,6 +13,7 @@ const Page = () => {
   const [quizTitle, setQuizTitle] = useState("");
   const [quizSubject, setQuizSubject] = useState("");
   const [timeLimit, setTimeLimit] = useState("");
+  const [quizImage, setQuizImage] = useState<string>("");
 
   useEffect(() => {
     const savedQuestions = localStorage.getItem("questions");
@@ -26,6 +27,9 @@ const Page = () => {
 
     const savedTimeLimit = localStorage.getItem("timeLimit");
     if (savedTimeLimit) setTimeLimit(savedTimeLimit);
+
+    const savedImage = localStorage.getItem("quizImage");
+    if (savedImage) setQuizImage(savedImage);
 
     const savedTheme = localStorage.getItem("theme");
     const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -49,6 +53,19 @@ const Page = () => {
     localStorage.setItem(key, event.target.value);
   };
 
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setQuizImage(base64String);
+        localStorage.setItem("quizImage", base64String);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <>
       <Navbar isDarkMode={isDarkMode} />
@@ -62,9 +79,11 @@ const Page = () => {
         </div>
 
         <div className="flex-col flex text-black gap-2 mt-4 ml-10">
-          <label>Enter Title: <br></br><input className="w-fit p-1 rounded-md" type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
-          <label>Enter Subject: <br></br><input className="w-fit p-1 rounded-md" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
-          <label>Enter Time Limit (in minutes): <br></br><input className="w-fit p-1 rounded-md" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
+          <label>Enter Title: <br /><input className="w-fit p-1 rounded-md" type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
+          <label>Enter Subject: <br /><input className="w-fit p-1 rounded-md" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
+          <label>Enter Time Limit (in minutes): <br /><input className="w-fit p-1 rounded-md" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
+          <label>Upload Image: <br /><input className="w-fit p-1 rounded-md" type="file" accept="image/*" onChange={handleImageUpload} /></label>
+          {quizImage && <img src={quizImage} alt="Quiz Preview" className="mt-2 w-32 h-32 object-cover rounded-md" />}
         </div>
 
         <div className="flex justify-center mt-4">
