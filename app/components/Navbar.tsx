@@ -39,19 +39,19 @@ const Navbar: React.FC = () => {
               }`}>Quiz Library</li>
             <li className={`md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/quizArchive/published")
-                  ? "text-blue-700"
-                  : "hover:text-blue-700 border-b-2 border-blue-700"
+                  ? "text-blue-700 border-b-2 border-blue-700"
+                  : "hover:text-blue-700"
               }`}>Archive</li>
           </Link>
           <Link href="/pages/quizCreate">
             <li className={`hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/quizCreate")
-                  ? "text-blue-700"
+                  ? "text-blue-700 border-b-2 border-blue-700"
                   : "hover:text-blue-700"
               }`}>Create Quiz</li>
             <li className={`md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/quizCreate")
-                  ? "text-blue-700"
+                  ? "text-blue-700 border-b-2 border-blue-700"
                   : "hover:text-blue-700"
               }`}>Create</li>
           </Link>
