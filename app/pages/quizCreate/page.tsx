@@ -10,16 +10,25 @@ const Page = () => {
   const [questions, setQuestions] = useState<
     { id: number; question: string; options: string[] }[]
   >([]);
+  const [quizTitle, setQuizTitle] = useState("");
+  const [quizSubject, setQuizSubject] = useState("");
+  const [timeLimit, setTimeLimit] = useState("");
 
   useEffect(() => {
     const savedQuestions = localStorage.getItem("questions");
     if (savedQuestions) setQuestions(JSON.parse(savedQuestions));
 
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
+    const savedTitle = localStorage.getItem("quizTitle");
+    if (savedTitle) setQuizTitle(savedTitle);
 
+    const savedSubject = localStorage.getItem("quizSubject");
+    if (savedSubject) setQuizSubject(savedSubject);
+
+    const savedTimeLimit = localStorage.getItem("timeLimit");
+    if (savedTimeLimit) setTimeLimit(savedTimeLimit);
+
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
     if (savedTheme) {
       setIsDarkMode(savedTheme === "dark");
       document.documentElement.classList.toggle("dark", savedTheme === "dark");
@@ -35,15 +44,16 @@ const Page = () => {
     localStorage.setItem("questions", JSON.stringify(updatedQuestions));
   };
 
+  const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>, key: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setter(event.target.value);
+    localStorage.setItem(key, event.target.value);
+  };
+
   return (
     <>
       <Navbar isDarkMode={isDarkMode} />
 
-      {/* Main container */}
-      <div
-        className="bg-slate-500 w-[90%] ml-[5%] mt-20 rounded-lg p-5 overflow-y-auto   custom-scroll"
-        style={{ maxHeight: "90vh" }} 
-      >
+      <div className="bg-slate-500 w-[90%] ml-[5%] mt-20 rounded-lg p-5 overflow-y-auto custom-scroll" style={{ maxHeight: "90vh" }}>
         <h1 className="text-center text-3xl">Create Quiz Here</h1>
 
         <div className="buttons flex-row flex gap-2 md:justify-end md:mr-10 justify-center mt-10">
@@ -51,42 +61,28 @@ const Page = () => {
           <button className="bg-slate-700 px-2 rounded-md py-1">Preview</button>
         </div>
 
-        <div className="flex-col flex text-black">
-          <span >Enter Title <input className="w-fit" type="text"></input></span>
-          <span>Enter Time Limit</span>
-          <span>Enter Subject</span>
+        <div className="flex-col flex text-black gap-2 mt-4">
+          <label>Enter Title: <input className="w-full p-1 rounded-md" type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
+          <label>Enter Subject: <input className="w-full p-1 rounded-md" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
+          <label>Enter Time Limit (in minutes): <input className="w-full p-1 rounded-md" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
         </div>
 
-
-
-        <div className="flex justify-center mt-4 ">
-          <button
-            className="bg-slate-700 px-2 rounded-md py-1"
-            onClick={() => router.push("/pages/quizCreate/addQuestion")}
-          >
-            Add Questions
-          </button>
+        <div className="flex justify-center mt-4">
+          <button className="bg-slate-700 px-2 rounded-md py-1" onClick={() => router.push("/pages/quizCreate/addQuestion")}>Add Questions</button>
         </div>
 
-        {/* Container */}
-        <div className="questions bg-slate-700 mt-4 p-4 rounded-lg ">
+        <div className="questions bg-slate-700 mt-4 p-4 rounded-lg">
           {questions.length === 0 ? (
             <p className="text-center text-gray-300">No questions added yet.</p>
           ) : (
             questions.map((q, index) => (
               <div key={q.id} className="bg-slate-600 p-6 rounded-lg mb-6">
                 <div className="flex justify-between items-center">
-                  {/* Unique Question Number */}
                   <h2 className="text-lg font-semibold">
                     <span className="text-gray-300 mr-2">Q{index + 1}.</span>
                     {q.question}
                   </h2>
-                  <button
-                    className="bg-red-500 px-2 text-center pr-10 py-1 rounded-md text-white"
-                    onClick={() => handleDeleteQuestion(q.id)}
-                  >
-                    ❌ Delete
-                  </button>
+                  <button className="bg-red-500 px-2 text-center pr-10 py-1 rounded-md text-white" onClick={() => handleDeleteQuestion(q.id)}>❌ Delete</button>
                 </div>
                 <ul className="mt-3 space-y-2">
                   {q.options.map((option, idx) => (
