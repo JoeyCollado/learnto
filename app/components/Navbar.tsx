@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
             <li className={`md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/quizArchive/published")
                   ? "text-blue-700"
-                  : "hover:text-blue-700"
+                  : "hover:text-blue-700 border-b-2 border-blue-700"
               }`}>Archive</li>
           </Link>
           <Link href="/pages/quizCreate">
