@@ -51,6 +51,14 @@ const Page = () => {
           <button className="bg-slate-700 px-2 rounded-md py-1">Preview</button>
         </div>
 
+        <div className="flex-col flex text-black">
+          <span >Enter Title <input className="w-fit" type="text"></input></span>
+          <span>Enter Time Limit</span>
+          <span>Enter Subject</span>
+        </div>
+
+
+
         <div className="flex justify-center mt-4 ">
           <button
             className="bg-slate-700 px-2 rounded-md py-1"
