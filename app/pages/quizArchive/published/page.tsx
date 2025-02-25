@@ -28,7 +28,7 @@ const PublishedQuizzes = () => {
       <Navbar />
       <div className="flex">
         {/* ✅ Sidebar: Fixed position & non-intrusive */}
-        <Sidebar className="fixed top-0 left-0 h-full w-64 bg-slate-800 text-white p-4" />
+        <Sidebar  />
 
         {/* ✅ Content: Leaves space for sidebar, responsive width */}
         <div className="flex-1  p-6 mt-[5%]">
