@@ -109,7 +109,7 @@ const Page = () => {
 
         <div className="buttons flex-row flex gap-2 md:justify-end md:mr-10 justify-center mt-10">
           <button className="bg-blue-800 px-2 rounded-md py-1 hover:bg-blue-500">Generate with AI</button>
-          <button className="bg-slate-700 px-2 rounded-md py-1" onClick={handlePublish}>Publish</button>
+          <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-600" onClick={handlePublish}>Publish</button>
           <button className="bg-slate-700 px-2 rounded-md py-1">Preview</button>
         </div>
 
