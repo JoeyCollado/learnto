@@ -26,7 +26,7 @@ const QuizCard = ({ quiz, onDelete }: { quiz: Quiz; onDelete: (id: number) => vo
         {/* Add to Collection Button */}
         <div className="relative flex items-center">
           <button 
-            className="bg-blue-500 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
+            className="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
             onMouseEnter={() => setHoveredButton("add")}
             onMouseLeave={() => setHoveredButton(null)}
           >
@@ -42,7 +42,7 @@ const QuizCard = ({ quiz, onDelete }: { quiz: Quiz; onDelete: (id: number) => vo
         {/* Archive Button */}
         <div className="relative flex items-center">
           <button 
-            className="bg-yellow-700 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
+            className="bg-yellow-700 hover:bg-yellow-600 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
             onMouseEnter={() => setHoveredButton("archive")}
             onMouseLeave={() => setHoveredButton(null)}
           >
@@ -58,7 +58,7 @@ const QuizCard = ({ quiz, onDelete }: { quiz: Quiz; onDelete: (id: number) => vo
         {/* Delete Button */}
         <div className="relative flex items-center">
           <button 
-            className="bg-red-500 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
+            className="bg-red-500 text-white px-3 py-1 rounded-md w-[50px] h-[30px] hover:bg-red-400"
             onClick={() => onDelete(quiz.id)}
             onMouseEnter={() => setHoveredButton("delete")}
             onMouseLeave={() => setHoveredButton(null)}
