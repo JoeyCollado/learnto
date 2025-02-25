@@ -14,7 +14,7 @@ const Sidebar = () => {
     <>
       {/* Vertical Sidebar */}
       <div
-        className={`h-screen mt-[5%] bg-slate-700 text-white transition-all duration-300 ${
+        className={`h-screen mt-[5%] bg-slate-700 text-white transition-all duration-300 z-50 ${
           isOpen ? "w-[200px]" : "w-[85px]"
         } rounded-r-xl flex flex-col py-5 relative hidden md:flex `}
       >
@@ -91,7 +91,7 @@ const Sidebar = () => {
       </div>
 
       {/* Bottom Horizontal Sidebar (for small screens) */}
-      <div className="fixed bottom-0 left-0 w-full bg-slate-700 text-white flex justify-around py-3 md:hidden text-[10px]">
+      <div className="fixed bottom-0 left-0 w-full bg-slate-700 text-white flex justify-around py-3 md:hidden text-[10px] z-50 ">
         <Link href="/pages/quizArchive/published" className={`flex flex-col items-center rounded-md w-[59px] py-1 ${
                 isActive("/pages/quizArchive/published")
                   ? "bg-blue-700"

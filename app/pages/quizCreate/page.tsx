@@ -93,8 +93,6 @@ const Page = () => {
 
   return (
     <>
-      <Navbar />
-
       <div className={`${isDarkMode ? "bg-slate-800" : "bg-slate-300"} ${isDarkMode ? "text-white" : "text-black"} w-[90%] ml-[5%] mt-20 mb-[5%] rounded-lg p-5 overflow-y-auto custom-scroll`} style={{ maxHeight: "90vh" }}>
         <h1 className="text-center text-3xl">Create Quiz Here</h1>
 

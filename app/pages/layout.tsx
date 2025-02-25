@@ -8,7 +8,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="z-50">
         <Navbar />
         <main>{children}</main>
-        <Sidebar />
       </div>
     </ThemeProvider>
   );

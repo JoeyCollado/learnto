@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Quiz } from "../published/types";
 import QuizCard from "@/app/components/QuizCard";
+import Sidebar from "@/app/components/Sidebar";
 
 const PublishedQuizzes = () => {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
@@ -14,6 +15,8 @@ const PublishedQuizzes = () => {
   }, []);
 
   return (
+    <>
+    <Sidebar/>
     <div className="absolute md:ml-[25%] md:w-3/5 md:mt-3  h-[600px] w-[60%] ml-[20%] bg-slate-600 rounded-md p-6 mt-[5%]">
       {/* Scrollable container with hidden scrollbar */}
       <div className="overflow-y-auto max-h-full custom-scroll">
@@ -28,6 +31,7 @@ const PublishedQuizzes = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
