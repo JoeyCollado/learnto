@@ -42,7 +42,7 @@ const QuizCard = ({ quiz, onDelete }: { quiz: Quiz; onDelete: (id: number) => vo
         {/* Archive Button */}
         <div className="relative flex items-center">
           <button 
-            className="bg-yellow-500 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
+            className="bg-yellow-700 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
             onMouseEnter={() => setHoveredButton("archive")}
             onMouseLeave={() => setHoveredButton(null)}
           >
