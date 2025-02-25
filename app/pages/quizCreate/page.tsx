@@ -104,13 +104,13 @@ const Page = () => {
     <>
       <Navbar isDarkMode={isDarkMode} />
 
-      <div className="bg-slate-500 w-[90%] ml-[5%] mt-20  mb-[5%] rounded-lg p-5 overflow-y-auto custom-scroll" style={{ maxHeight: "90vh" }}>
+      <div className="bg-slate-800 w-[90%] ml-[5%] mt-20  mb-[5%] rounded-lg p-5 overflow-y-auto custom-scroll" style={{ maxHeight: "90vh" }}>
         <h1 className="text-center text-3xl">Create Quiz Here</h1>
 
         <div className="buttons flex-row flex gap-2 md:justify-end md:mr-10 justify-center mt-10">
           <button className="bg-blue-800 px-2 rounded-md py-1 hover:bg-blue-500">Generate with AI</button>
-          <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-600" onClick={handlePublish}>Publish</button>
-          <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-600">Preview</button>
+          <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500" onClick={handlePublish}>Publish</button>
+          <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500">Preview</button>
         </div>
 
         <div className="flex-col flex text-black gap-2 mt-4 ml-10">
