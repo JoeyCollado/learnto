@@ -58,7 +58,7 @@ const QuizCard = ({ quiz, onDelete }: { quiz: Quiz; onDelete: (id: number) => vo
         {/* Delete Button */}
         <div className="relative flex items-center">
           <button 
-            className="bg-red-500 text-white px-3 py-1 rounded-md w-[50px] h-[30px] hover:bg-red-400"
+            className="bg-red-600 text-white px-3 py-1 rounded-md w-[50px] h-[30px] hover:bg-red-500"
             onClick={() => onDelete(quiz.id)}
             onMouseEnter={() => setHoveredButton("delete")}
             onMouseLeave={() => setHoveredButton(null)}
