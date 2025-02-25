@@ -32,8 +32,8 @@ const PublishedQuizzes = () => {
 
         {/* ✅ Content: Leaves space for sidebar, responsive width */}
         <div className="flex-1  p-6 mt-[5%]">
-          <div className="bg-slate-600 rounded-md p-6 max-h-[580x] overflow-y-auto custom-scroll">
-            <div className="text-center text-3xl py-2 pb-10">Collections</div>
+          <div className="bg-slate-600 rounded-md p-6 max-h-[580px] overflow-y-auto custom-scroll">
+            <div className="text-center text-3xl py-2 pb-10">Collection Quizzes</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {quizzes.map((quiz) => (
                 <QuizCard key={quiz.id} quiz={quiz} onDelete={handleDeleteQuiz} />
