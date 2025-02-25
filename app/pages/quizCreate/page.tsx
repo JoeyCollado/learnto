@@ -3,10 +3,12 @@
 import Navbar from "@/app/components/Navbar";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
+import { useTheme } from "@/app/components/theme-context"; // ✅ Import useTheme
 
 const Page = () => {
   const router = useRouter();
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const { isDarkMode } = useTheme(); // ✅ Use global theme state
+
   const [questions, setQuestions] = useState<
     { id: number; question: string; options: string[] }[]
   >([]);
@@ -30,16 +32,6 @@ const Page = () => {
 
     const savedImage = localStorage.getItem("quizImage");
     if (savedImage) setQuizImage(savedImage);
-
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === "dark");
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    } else {
-      setIsDarkMode(prefersDarkMode);
-      document.documentElement.classList.toggle("dark", prefersDarkMode);
-    }
   }, []);
 
   const handleDeleteQuestion = (id: number) => {
@@ -48,21 +40,18 @@ const Page = () => {
     localStorage.setItem("questions", JSON.stringify(updatedQuestions));
   };
 
-  const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>, key: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setter(event.target.value);
-    localStorage.setItem(key, event.target.value);
+  const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>, key: string) => 
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value);
+      localStorage.setItem(key, event.target.value);
   };
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const imageData = reader.result as string;
-        setQuizImage(imageData);
-        localStorage.setItem("quizImage", imageData);
-      };
-      reader.readAsDataURL(file);
+      const imageUrl = URL.createObjectURL(file); // ✅ Use URL instead of base64
+      setQuizImage(imageUrl);
+      localStorage.setItem("quizImage", imageUrl); // ✅ Store URL instead of large data
     }
   };
 
@@ -77,34 +66,36 @@ const Page = () => {
       dateCreated: new Date().toLocaleDateString(),
     };
   
-    // Save to localStorage
-    const existingQuizzes = JSON.parse(localStorage.getItem("publishedQuizzes") || "[]");
-    localStorage.setItem("publishedQuizzes", JSON.stringify([...existingQuizzes, newQuiz]));
+    let existingQuizzes = JSON.parse(localStorage.getItem("publishedQuizzes") || "[]");
   
-    // Clear localStorage for current quiz
+    if (existingQuizzes.length >= 10) {
+      existingQuizzes.shift(); // ✅ Remove oldest quiz if more than 10
+    }
+  
+    localStorage.setItem("publishedQuizzes", JSON.stringify([...existingQuizzes, newQuiz])); // ✅ Store in localStorage
+  
+    // ✅ Clear temp data
     localStorage.removeItem("quizTitle");
     localStorage.removeItem("quizSubject");
     localStorage.removeItem("timeLimit");
     localStorage.removeItem("quizImage");
     localStorage.removeItem("questions");
   
-    // Reset state to initial values
     setQuizTitle("");
     setQuizSubject("");
     setTimeLimit("");
     setQuizImage("");
     setQuestions([]);
   
-    // Navigate to Published page
     router.push("/pages/quizArchive/published");
   };
   
 
   return (
     <>
-      <Navbar isDarkMode={isDarkMode} />
+      <Navbar />
 
-      <div className="bg-slate-800 w-[90%] ml-[5%] mt-20  mb-[5%] rounded-lg p-5 overflow-y-auto custom-scroll" style={{ maxHeight: "90vh" }}>
+      <div className={`${isDarkMode ? "bg-slate-800" : "bg-slate-300"} ${isDarkMode ? "text-white" : "text-black"} w-[90%] ml-[5%] mt-20 mb-[5%] rounded-lg p-5 overflow-y-auto custom-scroll`} style={{ maxHeight: "90vh" }}>
         <h1 className="text-center text-3xl">Create Quiz Here</h1>
 
         <div className="buttons flex-row flex gap-2 md:justify-end md:mr-10 justify-center mt-10">
@@ -113,12 +104,12 @@ const Page = () => {
           <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500">Preview</button>
         </div>
 
-        <div className="flex-col flex text-black gap-2 mt-4 ml-10">
-          <label>Enter Title: <br></br><input className="w-fit p-1 rounded-md" type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
-          <label>Enter Subject: <br></br><input className="w-fit p-1 rounded-md" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
-          <label>Enter Time Limit (in minutes): <br></br><input className="w-fit p-1 rounded-md" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
-          <label>Upload Image: <br></br><input type="file" accept="image/*" onChange={handleImageUpload} /></label>
-          {quizImage && <img src={quizImage} alt="Quiz Preview" className="mt-2 w-32 h-32 object-cover rounded-md" />}
+        <div className={`flex-col flex gap-2 mt-4 ml-10`}>
+          <label>Enter Title: <br/><input className={`w-fit p-1 rounded-md text-black`} type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
+          <label>Enter Subject: <br/><input className="w-fit p-1 rounded-md text-black" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
+          <label>Enter Time Limit (in minutes): <br/><input className="w-fit p-1 rounded- text-black" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
+          <label>Upload Image: <br/><input type="file" accept="image/*" onChange={handleImageUpload} /></label>
+          {quizImage ? <img src={quizImage} alt="Quiz Preview" className="mt-2 w-32 h-32 object-cover rounded-md" /> : null}
         </div>
 
         <div className="flex justify-center mt-4">
