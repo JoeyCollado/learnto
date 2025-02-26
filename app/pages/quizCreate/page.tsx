@@ -42,36 +42,47 @@ const Page = () => {
       localStorage.setItem(key, event.target.value);
     };
 
-  const handlePublish = () => {
-    const newQuiz = {
-      id: Date.now(),
-      title: quizTitle,
-      subject: quizSubject,
-      time: timeLimit,
-      questions: questions.length,
-      dateCreated: new Date().toLocaleDateString(),
+    const handlePublish = () => {
+      if (!quizTitle.trim() || !quizSubject.trim() || !timeLimit.trim()) {
+        alert("Please fill in all the fields before publishing.");
+        return;
+      }
+    
+      if (questions.length === 0) {
+        alert("Please create at least one question before publishing.");
+        return;
+      }
+    
+      const newQuiz = {
+        id: Date.now(),
+        title: quizTitle,
+        subject: quizSubject,
+        time: timeLimit,
+        questions: questions.length,
+        dateCreated: new Date().toLocaleDateString(),
+      };
+    
+      let existingQuizzes = JSON.parse(localStorage.getItem("publishedQuizzes") || "[]");
+    
+      if (existingQuizzes.length >= 10) {
+        existingQuizzes.shift();
+      }
+    
+      localStorage.setItem("publishedQuizzes", JSON.stringify([...existingQuizzes, newQuiz]));
+    
+      localStorage.removeItem("quizTitle");
+      localStorage.removeItem("quizSubject");
+      localStorage.removeItem("timeLimit");
+      localStorage.removeItem("questions");
+    
+      setQuizTitle("");
+      setQuizSubject("");
+      setTimeLimit("");
+      setQuestions([]);
+    
+      router.push("/pages/quizArchive/published");
     };
-
-    let existingQuizzes = JSON.parse(localStorage.getItem("publishedQuizzes") || "[]");
-
-    if (existingQuizzes.length >= 10) {
-      existingQuizzes.shift();
-    }
-
-    localStorage.setItem("publishedQuizzes", JSON.stringify([...existingQuizzes, newQuiz]));
-
-    localStorage.removeItem("quizTitle");
-    localStorage.removeItem("quizSubject");
-    localStorage.removeItem("timeLimit");
-    localStorage.removeItem("questions");
-
-    setQuizTitle("");
-    setQuizSubject("");
-    setTimeLimit("");
-    setQuestions([]);
-
-    router.push("/pages/quizArchive/published");
-  };
+    
 
   return (
     <div
