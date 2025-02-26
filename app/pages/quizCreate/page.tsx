@@ -8,8 +8,6 @@ const Page = () => {
   const router = useRouter();
   const { isDarkMode } = useTheme();
 
-  
-
   const [questions, setQuestions] = useState<
     { id: number; question: string; options: string[] }[]
   >([]);
@@ -17,7 +15,6 @@ const Page = () => {
   const [quizSubject, setQuizSubject] = useState("");
   const [timeLimit, setTimeLimit] = useState("");
   const [draftSaved, setDraftSaved] = useState(false);
-
 
   useEffect(() => {
     const savedQuestions = localStorage.getItem("questions");
@@ -66,13 +63,18 @@ const Page = () => {
       dateCreated: new Date().toLocaleDateString(),
     };
 
-    let existingQuizzes = JSON.parse(localStorage.getItem("publishedQuizzes") || "[]");
+    let existingQuizzes = JSON.parse(
+      localStorage.getItem("publishedQuizzes") || "[]"
+    );
 
     if (existingQuizzes.length >= 10) {
       existingQuizzes.shift();
     }
 
-    localStorage.setItem("publishedQuizzes", JSON.stringify([...existingQuizzes, newQuiz]));
+    localStorage.setItem(
+      "publishedQuizzes",
+      JSON.stringify([...existingQuizzes, newQuiz])
+    );
 
     localStorage.removeItem("quizTitle");
     localStorage.removeItem("quizSubject");
@@ -96,21 +98,24 @@ const Page = () => {
       questions: questions,
       dateCreated: new Date().toLocaleDateString(),
     };
-  
-    let existingDrafts = JSON.parse(localStorage.getItem("draftQuizzes") || "[]");
-  
-    localStorage.setItem("draftQuizzes", JSON.stringify([...existingDrafts, newDraft]));
-  
+
+    let existingDrafts = JSON.parse(
+      localStorage.getItem("draftQuizzes") || "[]"
+    );
+
+    localStorage.setItem(
+      "draftQuizzes",
+      JSON.stringify([...existingDrafts, newDraft])
+    );
+
     alert("✅ Draft saved successfully!");
   };
-  
-  
 
   return (
     <div
-      className={`${
-        isDarkMode ? "bg-slate-800" : "bg-slate-300"
-      } ${isDarkMode ? "text-white" : "text-black"} w-[90%] ml-[5%] mt-20 mb-[5%] rounded-lg p-5 overflow-y-auto custom-scroll`}
+      className={`${isDarkMode ? "bg-slate-800" : "bg-slate-300"} ${
+        isDarkMode ? "text-white" : "text-black"
+      } w-[90%] ml-[5%] mt-20 mb-[5%] rounded-lg p-5 overflow-y-auto custom-scroll`}
       style={{ maxHeight: "90vh" }}
     >
       <h1 className="text-center text-3xl">Create Quiz Here</h1>
@@ -119,11 +124,17 @@ const Page = () => {
         <button className="bg-blue-800 px-2 rounded-md py-1 hover:bg-blue-500">
           Generate with AI
         </button>
-        <button className="bg-yellow-500 px-2 rounded-md py-1 hover:bg-yellow-400" onClick={handleSaveDraft}>
+        <button
+          className="bg-yellow-500 px-2 rounded-md py-1 hover:bg-yellow-400"
+          onClick={handleSaveDraft}
+        >
           Save Draft
         </button>
-        
-        <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500" onClick={handlePublish}>
+
+        <button
+          className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500"
+          onClick={handlePublish}
+        >
           Publish
         </button>
         <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500">
@@ -163,7 +174,10 @@ const Page = () => {
       </div>
 
       <div className="flex justify-center mt-4">
-        <button className="bg-slate-700 px-2 rounded-md py-1" onClick={() => router.push("/pages/quizCreate/addQuestion")}>
+        <button
+          className="bg-slate-700 px-2 rounded-md py-1"
+          onClick={() => router.push("/pages/quizCreate/addQuestion")}
+        >
           Add Questions
         </button>
       </div>
@@ -186,15 +200,20 @@ const Page = () => {
                   ❌ Delete
                 </button>
               </div>
-          
+
               {/* Display Options Below Question */}
-              <ul className="mt-3 pl-5 list-disc text-gray-300">
+              <ul className="mt-3 pl-5 text-gray-300">
                 {q.options.map((option, optIndex) => (
-                  <li key={optIndex}>{option}</li>
+                  <li key={optIndex} className="flex items-center">
+                    <span className="font-bold mr-2">
+                      {String.fromCharCode(97 + optIndex)}.
+                    </span>
+                    {option}
+                  </li>
                 ))}
               </ul>
             </div>
-          ))          
+          ))
         )}
       </div>
     </div>
