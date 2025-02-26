@@ -84,7 +84,7 @@ const Page = () => {
           <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500">Preview</button>
         </div>
 
-        <div className={`flex-col flex gap-2 mt-4 ml-10`}>
+        <div className={`flex-col flex gap-2 mt-4 md:ml-[5%] ml-[30%]`}>
           <label>Enter Title: <br/><input className={`w-fit p-1 rounded-md text-black`} type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
           <label>Enter Subject: <br/><input className="w-fit p-1 rounded-md text-black" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
           <label>Enter Time Limit (in minutes): <br/><input className="w-fit p-1 rounded- text-black" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
