@@ -48,12 +48,17 @@ const Page = () => {
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file); // ✅ Use URL instead of base64
-      setQuizImage(imageUrl);
-      localStorage.setItem("quizImage", imageUrl); // ✅ Store URL instead of large data
-    }
+    if (!file) return;
+  
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      setQuizImage(base64String);
+      localStorage.setItem("quizImage", base64String);
+    };
   };
+  
 
   const handlePublish = () => {
     const newQuiz = {
