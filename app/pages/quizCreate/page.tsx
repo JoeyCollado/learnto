@@ -42,63 +42,61 @@ const Page = () => {
       localStorage.setItem(key, event.target.value);
     };
 
-    const handlePublish = () => {
-      if (!quizTitle.trim() || !quizSubject.trim() || !timeLimit.trim()) {
-        alert("Please fill in all the fields before publishing.");
-        return;
-      }
-    
-      if (questions.length === 0) {
-        alert("Please create at least one question before publishing.");
-        return;
-      }
-    
-      const newQuiz = {
-        id: Date.now(),
-        title: quizTitle,
-        subject: quizSubject,
-        time: timeLimit,
-        questions: questions.length,
-        dateCreated: new Date().toLocaleDateString(),
-      };
-    
-      let existingQuizzes = JSON.parse(localStorage.getItem("publishedQuizzes") || "[]");
-    
-      if (existingQuizzes.length >= 10) {
-        existingQuizzes.shift();
-      }
-    
-      localStorage.setItem("publishedQuizzes", JSON.stringify([...existingQuizzes, newQuiz]));
-    
-      localStorage.removeItem("quizTitle");
-      localStorage.removeItem("quizSubject");
-      localStorage.removeItem("timeLimit");
-      localStorage.removeItem("questions");
-    
-      setQuizTitle("");
-      setQuizSubject("");
-      setTimeLimit("");
-      setQuestions([]);
-    
-      router.push("/pages/quizArchive/published");
+  const handlePublish = () => {
+    if (!quizTitle.trim() || !quizSubject.trim() || !timeLimit.trim()) {
+      alert("Please fill in all the fields before publishing.");
+      return;
+    }
+
+    if (questions.length === 0) {
+      alert("Please create at least one question before publishing.");
+      return;
+    }
+
+    const newQuiz = {
+      id: Date.now(),
+      title: quizTitle,
+      subject: quizSubject,
+      time: timeLimit,
+      questions: questions.length,
+      dateCreated: new Date().toLocaleDateString(),
     };
-    
-    const handleSaveDraft = () => {
-      const draftQuiz = {
-        id: Date.now(),
-        title: quizTitle,
-        subject: quizSubject,
-        time: timeLimit,
-        questions: questions,
-      };
-    
-      let existingDrafts = JSON.parse(localStorage.getItem("draftQuizzes") || "[]");
-      existingDrafts.push(draftQuiz);
-    
-      localStorage.setItem("draftQuizzes", JSON.stringify(existingDrafts));
-      alert("Draft saved!");
+
+    let existingQuizzes = JSON.parse(localStorage.getItem("publishedQuizzes") || "[]");
+
+    if (existingQuizzes.length >= 10) {
+      existingQuizzes.shift();
+    }
+
+    localStorage.setItem("publishedQuizzes", JSON.stringify([...existingQuizzes, newQuiz]));
+
+    localStorage.removeItem("quizTitle");
+    localStorage.removeItem("quizSubject");
+    localStorage.removeItem("timeLimit");
+    localStorage.removeItem("questions");
+
+    setQuizTitle("");
+    setQuizSubject("");
+    setTimeLimit("");
+    setQuestions([]);
+
+    router.push("/pages/quizArchive/published");
+  };
+
+  const handleSaveDraft = () => {
+    const newDraft = {
+      id: Date.now(),
+      title: quizTitle,
+      subject: quizSubject,
+      time: timeLimit,
+      questions: questions,
+      dateCreated: new Date().toLocaleDateString(),
     };
-        
+
+    let existingDrafts = JSON.parse(localStorage.getItem("draftQuizzes") || "[]");
+
+    localStorage.setItem("draftQuizzes", JSON.stringify([...existingDrafts, newDraft]));
+  };
 
   return (
     <div
@@ -110,20 +108,19 @@ const Page = () => {
       <h1 className="text-center text-3xl">Create Quiz Here</h1>
 
       <div className="buttons flex-row flex gap-2 md:justify-end md:mr-10 justify-center mt-10">
-  <button className="bg-blue-800 px-2 rounded-md py-1 hover:bg-blue-500">
-    Generate with AI
-  </button>
-  <button className="bg-yellow-500 px-2 rounded-md py-1 hover:bg-yellow-400" onClick={handleSaveDraft}>
-    Save Draft
-  </button>
-  <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500" onClick={handlePublish}>
-    Publish
-  </button>
-  <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500">
-    Preview
-  </button>
-</div>
-
+        <button className="bg-blue-800 px-2 rounded-md py-1 hover:bg-blue-500">
+          Generate with AI
+        </button>
+        <button className="bg-yellow-500 px-2 rounded-md py-1 hover:bg-yellow-400" onClick={handleSaveDraft}>
+          Save Draft
+        </button>
+        <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500" onClick={handlePublish}>
+          Publish
+        </button>
+        <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500">
+          Preview
+        </button>
+      </div>
 
       <div className={`flex-col flex gap-2 mt-4 md:ml-[5%] ml-[30%]`}>
         <label>
@@ -180,13 +177,6 @@ const Page = () => {
                   ❌ Delete
                 </button>
               </div>
-              <ul className="mt-3 space-y-2">
-                {q.options.map((option, idx) => (
-                  <li key={idx} className="ml-6 text-gray-200">
-                    <span className="font-semibold">{String.fromCharCode(65 + idx)}.</span> {option}
-                  </li>
-                ))}
-              </ul>
             </div>
           ))
         )}
