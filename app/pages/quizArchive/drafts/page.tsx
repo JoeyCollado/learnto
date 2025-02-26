@@ -28,6 +28,13 @@ const DraftQuizzes = () => {
     router.push("/pages/quizCreate"); // Redirect to quiz creation page
   };
 
+  // ✅ Delete draft
+  const handleDeleteDraft = (draftId: number) => {
+    const updatedDrafts = drafts.filter((draft) => draft.id !== draftId);
+    setDrafts(updatedDrafts);
+    localStorage.setItem("draftQuizzes", JSON.stringify(updatedDrafts));
+  };
+
   return (
     <>
       <Navbar />
@@ -42,11 +49,16 @@ const DraftQuizzes = () => {
                 <div
                   key={draft.id}
                   className="bg-yellow-500 p-4 rounded-md cursor-pointer hover:bg-yellow-400"
-                  onClick={() => handleEditDraft(draft)}
                 >
-                  <h3 className="text-xl font-bold">{draft.title || "Untitled Quiz"}</h3>
+                  <h3 className="text-xl font-bold" onClick={() => handleEditDraft(draft)}>{draft.title || "Untitled Quiz"}</h3>
                   <p className="text-sm">Subject: {draft.subject || "No subject"}</p>
                   <p className="text-sm">Questions: {draft.questions?.length || 0}</p>
+                  <button
+                    className="bg-red-600 text-white px-2 py-1 rounded-md mt-2 hover:bg-red-500"
+                    onClick={() => handleDeleteDraft(draft.id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               ))}
             </div>
