@@ -83,6 +83,22 @@ const Page = () => {
       router.push("/pages/quizArchive/published");
     };
     
+    const handleSaveDraft = () => {
+      const draftQuiz = {
+        id: Date.now(),
+        title: quizTitle,
+        subject: quizSubject,
+        time: timeLimit,
+        questions: questions,
+      };
+    
+      let existingDrafts = JSON.parse(localStorage.getItem("draftQuizzes") || "[]");
+      existingDrafts.push(draftQuiz);
+    
+      localStorage.setItem("draftQuizzes", JSON.stringify(existingDrafts));
+      alert("Draft saved!");
+    };
+        
 
   return (
     <div
@@ -94,14 +110,20 @@ const Page = () => {
       <h1 className="text-center text-3xl">Create Quiz Here</h1>
 
       <div className="buttons flex-row flex gap-2 md:justify-end md:mr-10 justify-center mt-10">
-        <button className="bg-blue-800 px-2 rounded-md py-1 hover:bg-blue-500">
-          Generate with AI
-        </button>
-        <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500" onClick={handlePublish}>
-          Publish
-        </button>
-        <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500">Preview</button>
-      </div>
+  <button className="bg-blue-800 px-2 rounded-md py-1 hover:bg-blue-500">
+    Generate with AI
+  </button>
+  <button className="bg-yellow-500 px-2 rounded-md py-1 hover:bg-yellow-400" onClick={handleSaveDraft}>
+    Save Draft
+  </button>
+  <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500" onClick={handlePublish}>
+    Publish
+  </button>
+  <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500">
+    Preview
+  </button>
+</div>
+
 
       <div className={`flex-col flex gap-2 mt-4 md:ml-[5%] ml-[30%]`}>
         <label>

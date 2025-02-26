@@ -1,42 +1,53 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Quiz } from "../published/types";
-import QuizCard from "@/app/components/QuizCard";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 
-const PublishedQuizzes = () => {
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+const DraftQuizzes = () => {
+  const router = useRouter();
+  const [drafts, setDrafts] = useState<Quiz[]>([]);
 
   useEffect(() => {
-    const storedQuizzes = localStorage.getItem("publishedQuizzes");
-    if (storedQuizzes) {
-      setQuizzes(JSON.parse(storedQuizzes));
+    // ✅ Load unfinished drafts
+    const storedDrafts = localStorage.getItem("draftQuizzes");
+    if (storedDrafts) {
+      setDrafts(JSON.parse(storedDrafts));
     }
   }, []);
 
-  // ✅ Function to delete a quiz
-  const handleDeleteQuiz = (quizId: number) => {
-    const updatedQuizzes = quizzes.filter((quiz) => quiz.id !== quizId);
-    setQuizzes(updatedQuizzes);
-    localStorage.setItem("publishedQuizzes", JSON.stringify(updatedQuizzes));
+  // ✅ Click draft to continue editing
+  const handleEditDraft = (draft: Quiz) => {
+    localStorage.setItem("quizTitle", draft.title);
+    localStorage.setItem("quizSubject", draft.subject);
+    localStorage.setItem("timeLimit", draft.time);
+    localStorage.setItem("questions", JSON.stringify(draft.questions));
+
+    router.push("/pages/quizCreate"); // Redirect to quiz creation page
   };
 
   return (
     <>
       <Navbar />
       <div className="flex">
-        {/* ✅ Sidebar: Fixed position & non-intrusive */}
-        <Sidebar  />
+        <Sidebar />
 
-        {/* ✅ Content: Leaves space for sidebar, responsive width */}
-        <div className="flex-1  p-6 mt-[5%]">
+        <div className="flex-1 p-6 mt-[5%]">
           <div className="bg-slate-600 rounded-md p-6 max-h-[580px] overflow-y-auto custom-scroll">
             <div className="text-center text-3xl py-2 pb-10">Drafts</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {quizzes.map((quiz) => (
-                <QuizCard key={quiz.id} quiz={quiz} onDelete={handleDeleteQuiz} />
+              {drafts.map((draft) => (
+                <div
+                  key={draft.id}
+                  className="bg-yellow-500 p-4 rounded-md cursor-pointer hover:bg-yellow-400"
+                  onClick={() => handleEditDraft(draft)}
+                >
+                  <h3 className="text-xl font-bold">{draft.title || "Untitled Quiz"}</h3>
+                  <p className="text-sm">Subject: {draft.subject || "No subject"}</p>
+                  <p className="text-sm">Questions: {draft.questions?.length || 0}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -46,4 +57,4 @@ const PublishedQuizzes = () => {
   );
 };
 
-export default PublishedQuizzes;
+export default DraftQuizzes;
