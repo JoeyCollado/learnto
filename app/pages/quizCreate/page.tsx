@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/app/components/Navbar";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@/app/components/theme-context"; // ✅ Import useTheme
@@ -15,7 +14,6 @@ const Page = () => {
   const [quizTitle, setQuizTitle] = useState("");
   const [quizSubject, setQuizSubject] = useState("");
   const [timeLimit, setTimeLimit] = useState("");
-  const [quizImage, setQuizImage] = useState("");
 
   useEffect(() => {
     const savedQuestions = localStorage.getItem("questions");
@@ -29,9 +27,6 @@ const Page = () => {
 
     const savedTimeLimit = localStorage.getItem("timeLimit");
     if (savedTimeLimit) setTimeLimit(savedTimeLimit);
-
-    const savedImage = localStorage.getItem("quizImage");
-    if (savedImage) setQuizImage(savedImage);
   }, []);
 
   const handleDeleteQuestion = (id: number) => {
@@ -46,27 +41,12 @@ const Page = () => {
       localStorage.setItem(key, event.target.value);
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-  
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const base64String = reader.result as string;
-      setQuizImage(base64String);
-      localStorage.setItem("quizImage", base64String);
-    };
-  };
-  
-
   const handlePublish = () => {
     const newQuiz = {
       id: Date.now(),
       title: quizTitle,
       subject: quizSubject,
       time: timeLimit,
-      image: quizImage,
       questions: questions.length,
       dateCreated: new Date().toLocaleDateString(),
     };
@@ -83,18 +63,15 @@ const Page = () => {
     localStorage.removeItem("quizTitle");
     localStorage.removeItem("quizSubject");
     localStorage.removeItem("timeLimit");
-    localStorage.removeItem("quizImage");
     localStorage.removeItem("questions");
   
     setQuizTitle("");
     setQuizSubject("");
     setTimeLimit("");
-    setQuizImage("");
     setQuestions([]);
   
     router.push("/pages/quizArchive/published");
   };
-  
 
   return (
     <>
@@ -111,8 +88,6 @@ const Page = () => {
           <label>Enter Title: <br/><input className={`w-fit p-1 rounded-md text-black`} type="text" value={quizTitle} onChange={handleInputChange(setQuizTitle, "quizTitle")} /></label>
           <label>Enter Subject: <br/><input className="w-fit p-1 rounded-md text-black" type="text" value={quizSubject} onChange={handleInputChange(setQuizSubject, "quizSubject")} /></label>
           <label>Enter Time Limit (in minutes): <br/><input className="w-fit p-1 rounded- text-black" type="number" min="1" value={timeLimit} onChange={handleInputChange(setTimeLimit, "timeLimit")} /></label>
-          <label>Upload Image: <br/><input type="file" accept="image/*" onChange={handleImageUpload} /></label>
-          {quizImage ? <img src={quizImage} alt="Quiz Preview" className="mt-2 w-32 h-32 object-cover rounded-md" /> : null}
         </div>
 
         <div className="flex justify-center mt-4">
