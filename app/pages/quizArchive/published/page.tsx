@@ -11,6 +11,7 @@ const PublishedQuizzes = () => {
 
   useEffect(() => {
     const storedQuizzes = localStorage.getItem("publishedQuizzes");
+    console.log("Retrieved from localStorage:", storedQuizzes); // 🔍 Debugging
     if (storedQuizzes) {
       setQuizzes(JSON.parse(storedQuizzes));
     }
