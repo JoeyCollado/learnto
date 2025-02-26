@@ -186,8 +186,15 @@ const Page = () => {
                   ❌ Delete
                 </button>
               </div>
+          
+              {/* Display Options Below Question */}
+              <ul className="mt-3 pl-5 list-disc text-gray-300">
+                {q.options.map((option, optIndex) => (
+                  <li key={optIndex}>{option}</li>
+                ))}
+              </ul>
             </div>
-          ))
+          ))          
         )}
       </div>
     </div>
