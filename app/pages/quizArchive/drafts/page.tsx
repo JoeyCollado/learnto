@@ -24,6 +24,7 @@ const DraftQuizzes = () => {
     localStorage.setItem("quizSubject", draft.subject);
     localStorage.setItem("timeLimit", draft.time);
     localStorage.setItem("questions", JSON.stringify(draft.questions));
+    localStorage.setItem("dateCreated", draft.dateCreated);
 
     router.push("/pages/quizCreate"); // Redirect to quiz creation page
   };
@@ -52,6 +53,8 @@ const DraftQuizzes = () => {
                 >
                   <h3 className="text-xl font-bold" onClick={() => handleEditDraft(draft)}>{draft.title || "Untitled Quiz"}</h3>
                   <p className="text-sm">Subject: {draft.subject || "No subject"}</p>
+                  <p className="text-sm">Time Limit: {draft.time || "No time limit"} minutes</p>
+                  <p className="text-sm">Date Created: {draft.dateCreated || "Unknown"}</p>
                   <p className="text-sm">Questions: {draft.questions?.length || 0}</p>
                   <button
                     className="bg-red-600 text-white px-2 py-1 rounded-md mt-2 hover:bg-red-500"
