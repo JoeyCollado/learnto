@@ -8,12 +8,16 @@ const Page = () => {
   const router = useRouter();
   const { isDarkMode } = useTheme();
 
+  
+
   const [questions, setQuestions] = useState<
     { id: number; question: string; options: string[] }[]
   >([]);
   const [quizTitle, setQuizTitle] = useState("");
   const [quizSubject, setQuizSubject] = useState("");
   const [timeLimit, setTimeLimit] = useState("");
+  const [draftSaved, setDraftSaved] = useState(false);
+
 
   useEffect(() => {
     const savedQuestions = localStorage.getItem("questions");
@@ -92,11 +96,15 @@ const Page = () => {
       questions: questions,
       dateCreated: new Date().toLocaleDateString(),
     };
-
+  
     let existingDrafts = JSON.parse(localStorage.getItem("draftQuizzes") || "[]");
-
+  
     localStorage.setItem("draftQuizzes", JSON.stringify([...existingDrafts, newDraft]));
+  
+    alert("✅ Draft saved successfully!");
   };
+  
+  
 
   return (
     <div
@@ -114,6 +122,7 @@ const Page = () => {
         <button className="bg-yellow-500 px-2 rounded-md py-1 hover:bg-yellow-400" onClick={handleSaveDraft}>
           Save Draft
         </button>
+        
         <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500" onClick={handlePublish}>
           Publish
         </button>
