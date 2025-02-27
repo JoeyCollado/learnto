@@ -104,14 +104,7 @@ const Sidebar = () => {
           <Menu size={20} />
           <span>Archived</span>
         </Link>
-        <Link href="/pages/quizArchive/collections" className={`flex flex-col items-center rounded-md w-[59px] py-1 ${
-                isActive("/pages/quizArchive/collections")
-                  ? "bg-blue-700"
-                  : "hover:bg-blue-700"
-              }`}>
-          <Menu size={20} />
-          <span>Collections</span>
-        </Link>
+       
       </div>
     </>
   );
