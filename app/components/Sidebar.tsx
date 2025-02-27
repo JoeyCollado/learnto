@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import React, { useState } from "react";
-import { Menu, ChevronLeft, ChevronRight } from "lucide-react";
+import { Menu, ChevronLeft, ChevronRight, Book } from "lucide-react";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -19,6 +19,7 @@ const Sidebar = () => {
         } rounded-r-xl flex flex-col py-5 relative hidden md:flex `}
       >
         <div className="flex items-center px-4">
+          {isOpen && <Book size={24} className="mr-2" />} {/* Icon appears next to Library text when open */}
           <span
             className={`text-3xl ml-4 font-bold transition-all duration-300 ${
               !isOpen && "hidden"
@@ -73,12 +74,18 @@ const Sidebar = () => {
         {/* Fixed Position Collapse Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="absolute bottom-5 left-4 flex items-center gap-2 text-white px-4 py-2 rounded-lg w-max"
+          className="absolute bottom-5 left-4 flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg w-max"
         >
-          <ChevronLeft size={20} className={`${!isOpen && "hidden"}`} />
-          <ChevronRight size={20} className={`${isOpen && "hidden"}`} />
-          <span className={`${!isOpen && "hidden"}`}>Collapse</span>
+          {isOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />} 
+          {isOpen && <span>Collapse</span>} 
         </button>
+
+        {/* Placeholder icon when sidebar is closed */}
+        {!isOpen && (
+          <div className="absolute top-5 left-1/2 transform -translate-x-1/2">
+            <Book size={24} />
+          </div>
+        )}
       </div>
 
       {/* Bottom Horizontal Sidebar (for small screens) */}
