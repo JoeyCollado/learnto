@@ -4,11 +4,13 @@ import { useState } from "react";
 const QuizCard = ({
   quiz,
   onDelete,
-  onArchive, // ✅ Added onArchive prop
+  onArchive,
+  onAddToCollection, // ✅ New function prop
 }: {
   quiz: Quiz;
   onDelete: (id: number) => void;
-  onArchive?: (id: number) => void; // ✅ Archive function is optional
+  onArchive?: (id: number) => void;
+  onAddToCollection?: (quiz: Quiz) => void; // ✅ Function accepts quiz object
 }) => {
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
 
@@ -27,6 +29,7 @@ const QuizCard = ({
         <div className="relative flex items-center">
           <button 
             className="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
+            onClick={() => onAddToCollection && onAddToCollection(quiz)} // ✅ Add quiz to collection
             onMouseEnter={() => setHoveredButton("add")}
             onMouseLeave={() => setHoveredButton(null)}
           >
@@ -43,7 +46,7 @@ const QuizCard = ({
         <div className="relative flex items-center">
           <button 
             className="bg-yellow-700 hover:bg-yellow-600 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
-            onClick={() => onArchive && onArchive(quiz.id)} // ✅ Archive when clicked
+            onClick={() => onArchive && onArchive(quiz.id)}
             onMouseEnter={() => setHoveredButton("archive")}
             onMouseLeave={() => setHoveredButton(null)}
           >

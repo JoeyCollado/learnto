@@ -1,44 +1,48 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"; // ✅ Import Next.js router
 import { Quiz } from "../published/types";
-import QuizCard from "@/app/components/QuizCard";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 
-const PublishedQuizzes = () => {
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+const Collections = () => {
+  const [collections, setCollections] = useState<{ [key: string]: Quiz[] }>({});
+  const router = useRouter(); // ✅ Use router for navigation
 
   useEffect(() => {
-    const storedQuizzes = localStorage.getItem("publishedQuizzes");
-    if (storedQuizzes) {
-      setQuizzes(JSON.parse(storedQuizzes));
+    const storedCollections = localStorage.getItem("quizCollections");
+    if (storedCollections) {
+      setCollections(JSON.parse(storedCollections));
     }
   }, []);
-
-  // ✅ Function to delete a quiz
-  const handleDeleteQuiz = (quizId: number) => {
-    const updatedQuizzes = quizzes.filter((quiz) => quiz.id !== quizId);
-    setQuizzes(updatedQuizzes);
-    localStorage.setItem("publishedQuizzes", JSON.stringify(updatedQuizzes));
-  };
 
   return (
     <>
       <Navbar />
       <div className="flex">
-        {/* ✅ Sidebar: Fixed position & non-intrusive */}
-        <Sidebar  />
+        <Sidebar />
 
-        {/* ✅ Content: Leaves space for sidebar, responsive width */}
-        <div className="flex-1  p-6 mt-[5%]">
+        <div className="flex-1 p-6 mt-[5%]">
           <div className="bg-slate-600 rounded-md p-6 max-h-[580px] overflow-y-auto custom-scroll">
-            <div className="text-center text-3xl py-2 pb-10">Collection Quizzes</div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {quizzes.map((quiz) => (
-                <QuizCard key={quiz.id} quiz={quiz} onDelete={handleDeleteQuiz} />
-              ))}
-            </div>
+            <div className="text-center text-3xl py-2 pb-10">Collections</div>
+
+            {Object.keys(collections).length === 0 ? (
+              <p className="text-center text-white">No collections available.</p>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {Object.entries(collections).map(([name, quizzes]) => (
+                  <div
+                    key={name}
+                    className="bg-slate-500 p-4 rounded-lg shadow-md cursor-pointer hover:bg-slate-400 transition"
+                    onClick={() => router.push(`/collections/${encodeURIComponent(name)}`)} // ✅ Navigate to details page
+                  >
+                    <h2 className="text-white text-xl font-bold">{name}</h2>
+                    <p className="text-gray-300 text-sm">{quizzes.length} quizzes</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -46,4 +50,4 @@ const PublishedQuizzes = () => {
   );
 };
 
-export default PublishedQuizzes;
+export default Collections;

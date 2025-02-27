@@ -16,19 +16,23 @@ const PublishedQuizzes = () => {
     }
   }, []);
 
-  // ✅ Archive function to move quiz to archived list
-  const handleArchiveQuiz = (quizId: number) => {
-    const quizToArchive = quizzes.find((quiz) => quiz.id === quizId);
-    if (!quizToArchive) return;
+  // ✅ Function to add quiz to a collection
+  const handleAddToCollection = (quiz: Quiz) => {
+    const collectionName = prompt("Enter collection name:");
+    if (!collectionName) return;
 
-    // Get archived quizzes from localStorage
-    const archivedQuizzes = JSON.parse(localStorage.getItem("archivedQuizzes") || "[]");
+    // Get existing collections from localStorage
+    const collections = JSON.parse(localStorage.getItem("quizCollections") || "{}");
 
-    // Update both states and localStorage
-    const updatedQuizzes = quizzes.filter((quiz) => quiz.id !== quizId);
-    setQuizzes(updatedQuizzes);
-    localStorage.setItem("publishedQuizzes", JSON.stringify(updatedQuizzes));
-    localStorage.setItem("archivedQuizzes", JSON.stringify([...archivedQuizzes, quizToArchive]));
+    // Add quiz to selected collection
+    if (!collections[collectionName]) {
+      collections[collectionName] = [];
+    }
+    collections[collectionName].push(quiz);
+
+    // Save to localStorage
+    localStorage.setItem("quizCollections", JSON.stringify(collections));
+    alert(`Quiz added to "${collectionName}" collection!`);
   };
 
   return (
@@ -42,7 +46,7 @@ const PublishedQuizzes = () => {
             <div className="text-center text-3xl py-2 pb-10">Published Quizzes</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {quizzes.map((quiz) => (
-                <QuizCard key={quiz.id} quiz={quiz} onArchive={handleArchiveQuiz} />
+                <QuizCard key={quiz.id} quiz={quiz} onDelete={() => {}} onAddToCollection={handleAddToCollection} />
               ))}
             </div>
           </div>
