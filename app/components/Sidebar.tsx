@@ -73,7 +73,7 @@ const Sidebar = () => {
         {/* Collapse Button at the Bottom */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex items-center gap-2  hover:bg-blue-700 text-white px-3 py-2 rounded-lg"
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex items-center gap-2 text-white px-3 py-2 rounded-lg"
         >
           {isOpen ? <ChevronLeft size={20} className="" /> : <ChevronRight size={20} />}
           <span className={`${!isOpen && "hidden"}`}>Collapse</span>
