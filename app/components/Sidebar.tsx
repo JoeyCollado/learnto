@@ -70,12 +70,13 @@ const Sidebar = () => {
           </li>
         </ul>
 
-        {/* Collapse Button at the Bottom */}
+        {/* Fixed Position Collapse Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex items-center gap-2 text-white px-3 py-2 rounded-lg"
+          className="absolute bottom-5 left-4 flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg w-max"
         >
-          {isOpen ? <ChevronLeft size={20} className="" /> : <ChevronRight size={20} />}
+          <ChevronLeft size={20} className={`${!isOpen && "hidden"}`} />
+          <ChevronRight size={20} className={`${isOpen && "hidden"}`} />
           <span className={`${!isOpen && "hidden"}`}>Collapse</span>
         </button>
       </div>
