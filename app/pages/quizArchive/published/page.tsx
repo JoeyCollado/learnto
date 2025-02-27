@@ -11,33 +11,38 @@ const PublishedQuizzes = () => {
 
   useEffect(() => {
     const storedQuizzes = localStorage.getItem("publishedQuizzes");
-    console.log("Retrieved from localStorage:", storedQuizzes); // 🔍 Debugging
     if (storedQuizzes) {
       setQuizzes(JSON.parse(storedQuizzes));
     }
   }, []);
 
-  // ✅ Function to delete a quiz
-  const handleDeleteQuiz = (quizId: number) => {
+  // ✅ Archive function to move quiz to archived list
+  const handleArchiveQuiz = (quizId: number) => {
+    const quizToArchive = quizzes.find((quiz) => quiz.id === quizId);
+    if (!quizToArchive) return;
+
+    // Get archived quizzes from localStorage
+    const archivedQuizzes = JSON.parse(localStorage.getItem("archivedQuizzes") || "[]");
+
+    // Update both states and localStorage
     const updatedQuizzes = quizzes.filter((quiz) => quiz.id !== quizId);
     setQuizzes(updatedQuizzes);
     localStorage.setItem("publishedQuizzes", JSON.stringify(updatedQuizzes));
+    localStorage.setItem("archivedQuizzes", JSON.stringify([...archivedQuizzes, quizToArchive]));
   };
 
   return (
     <>
       <Navbar />
       <div className="flex">
-        {/* ✅ Sidebar: Fixed position & non-intrusive */}
-        <Sidebar  />
+        <Sidebar />
 
-        {/* ✅ Content: Leaves space for sidebar, responsive width */}
         <div className="flex-1 p-6 mt-[5%]">
           <div className="bg-slate-600 rounded-md p-6 max-h-[580px] overflow-y-auto custom-scroll">
             <div className="text-center text-3xl py-2 pb-10">Published Quizzes</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {quizzes.map((quiz) => (
-                <QuizCard key={quiz.id} quiz={quiz} onDelete={handleDeleteQuiz} />
+                <QuizCard key={quiz.id} quiz={quiz} onArchive={handleArchiveQuiz} />
               ))}
             </div>
           </div>

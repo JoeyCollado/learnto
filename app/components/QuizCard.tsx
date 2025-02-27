@@ -1,7 +1,15 @@
 import { Quiz } from "../types/types";
 import { useState } from "react";
 
-const QuizCard = ({ quiz, onDelete }: { quiz: Quiz; onDelete: (id: number) => void }) => {
+const QuizCard = ({
+  quiz,
+  onDelete,
+  onArchive, // ✅ Added onArchive prop
+}: {
+  quiz: Quiz;
+  onDelete: (id: number) => void;
+  onArchive?: (id: number) => void; // ✅ Archive function is optional
+}) => {
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
 
   return (
@@ -35,6 +43,7 @@ const QuizCard = ({ quiz, onDelete }: { quiz: Quiz; onDelete: (id: number) => vo
         <div className="relative flex items-center">
           <button 
             className="bg-yellow-700 hover:bg-yellow-600 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
+            onClick={() => onArchive && onArchive(quiz.id)} // ✅ Archive when clicked
             onMouseEnter={() => setHoveredButton("archive")}
             onMouseLeave={() => setHoveredButton(null)}
           >
