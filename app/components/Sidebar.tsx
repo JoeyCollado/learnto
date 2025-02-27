@@ -74,19 +74,7 @@ const Sidebar = () => {
               <span className={`${!isOpen && "hidden"}`}>Archived</span>
             </Link>
           </li>
-          <li>
-            <Link
-              href="/pages/quizArchive/collections"
-              className={`flex items-center gap-3 hover:bg-blue-700 pl-2 py-2 rounded-md ${
-                isActive("/pages/quizArchive/collections")
-                  ? "bg-blue-700 px-2 py-2"
-                  : "hover:bg-blue-700"
-              }`}
-            >
-              <Menu size={20} />
-              <span className={`${!isOpen && "hidden"}`}>Collections</span>
-            </Link>
-          </li>
+
         </ul>
       </div>
 
