@@ -24,7 +24,7 @@ const Collections = () => {
         <Sidebar />
 
         <div className="flex-1 p-6 mt-[5%]">
-          <div className="bg-slate-600 rounded-md p-6 max-h-[580px] overflow-y-auto custom-scroll">
+          <div className="bg-slate-800 rounded-md p-6 max-h-[580px] overflow-y-auto custom-scroll">
             <div className="text-center text-3xl py-2 pb-10">Collections</div>
 
             {Object.keys(collections).length === 0 ? (
