@@ -11,7 +11,6 @@ const Navbar: React.FC = () => {
   const { isDarkMode, toggleTheme } = useTheme(); // Use ThemeContext
   const pathname = usePathname(); //get current route
 
-  
   const isActive = (path: string) => pathname === path; //function to check if link is active
 
   return (
@@ -22,38 +21,59 @@ const Navbar: React.FC = () => {
     >
       <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       <div className="items text-[13px]">
-    <span className="absolute md:block flex-row top-[-40] w-[150px] mt-4 md:mt-0 md:w-[200px]"><Image src="/learntooo.png" width={200} height={10} alt="learnto image" className=""></Image></span>
+        <span className="absolute md:block flex-row top-[-40] w-[150px] mt-4 md:mt-0 md:w-[200px]">
+          <Image
+            src="/learntooo.png"
+            width={200}
+            height={10}
+            alt="learnto image"
+            className=""
+          ></Image>
+        </span>
         <ul className="flex flex-row md:gap-20 gap-7 ml-40 md:ml-96">
           <Link href="/pages/dashboard">
-            <li className={`hover:text-blue-700 transition-all duration-300 ease-in-out ${
+            <li
+              className={`hover:text-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/dashboard")
                   ? "text-blue-700 border-b-2 border-blue-700"
                   : "hover:text-blue-700"
-              }`}>Home</li>
+              }`}
+            >
+              Home
+            </li>
           </Link>
-          <Link href="/pages/quizArchive/published">
-            <li className={`hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out ${
-                isActive("/pages/quizArchive/published")
-                  ? "text-blue-700 border-b-2 border-blue-700"
-                  : "hover:text-blue-700"
-              }`}>Quiz Library</li>
-            <li className={`md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out ${
-                isActive("/pages/quizArchive/published")
-                  ? "text-blue-700 border-b-2 border-blue-700"
-                  : "hover:text-blue-700"
-              }`}>Archive</li>
+          <Link
+            href="/pages/quizArchive/published"
+            className={`${
+              isActive("/pages/quizArchive/drafts") ||
+              isActive("/pages/quizArchive/archived") ||
+              isActive("/pages/quizArchive/published")
+                ? "text-blue-700"
+                : "text-white"
+            }`}
+          >
+            Archive
           </Link>
+
           <Link href="/pages/quizCreate">
-            <li className={`hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out ${
+            <li
+              className={`hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/quizCreate")
                   ? "text-blue-700 border-b-2 border-blue-700"
                   : "hover:text-blue-700"
-              }`}>Create Quiz</li>
-            <li className={`md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out ${
+              }`}
+            >
+              Create Quiz
+            </li>
+            <li
+              className={`md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/quizCreate")
                   ? "text-blue-700 border-b-2 border-blue-700"
                   : "hover:text-blue-700"
-              }`}>Create</li>
+              }`}
+            >
+              Create
+            </li>
           </Link>
         </ul>
       </div>
