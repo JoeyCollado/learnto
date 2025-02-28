@@ -18,10 +18,10 @@ const Sidebar = () => {
           isOpen ? "w-[200px]" : "w-[85px]"
         } rounded-r-xl flex flex-col py-5 relative hidden md:flex `}
       >
-        <div className="flex items-center px-4">
-          {isOpen && <Book size={24} className="mr-2" />} {/* Icon appears next to Library text when open */}
+        <div className="flex items-center px-4 ml-3">
+          {isOpen && <Book size={24} className="" />} {/* Icon appears next to Library text when open */}
           <span
-            className={`text-3xl ml-4 font-bold transition-all duration-300 ${
+            className={`text-3xl ml-3 font-bold transition-all duration-300 ${
               !isOpen && "hidden"
             }`}
           >
