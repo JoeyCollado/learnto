@@ -16,7 +16,7 @@ const Sidebar = () => {
       <div
         className={`h-screen mt-[5%] bg-slate-700 text-white transition-all duration-300 z-50 ${
           isOpen ? "w-[200px]" : "w-[85px]"
-        } rounded-r-xl flex flex-col py-5 relative hidden md:flex `}
+        } rounded-r-xl  flex-col py-5 relative  md:flex `}
       >
         <div className="flex items-center px-4 ml-3 absolute">
           {isOpen && <Book size={24} className="" />} {/* Icon appears next to Library text when open */}
