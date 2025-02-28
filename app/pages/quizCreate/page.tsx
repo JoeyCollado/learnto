@@ -137,7 +137,7 @@ const Page = () => {
         >
           Publish
         </button>
-        <button className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500">
+        <button className="bg-purple-700 px-2 rounded-md py-1 hover:bg-purple-600">
           Preview
         </button>
       </div>
