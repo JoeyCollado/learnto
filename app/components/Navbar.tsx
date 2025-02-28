@@ -44,12 +44,12 @@ const Navbar: React.FC = () => {
           </Link>
           <Link
             href="/pages/quizArchive/published"
-            className={`${
+            className={`hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out ${
               isActive("/pages/quizArchive/drafts") ||
               isActive("/pages/quizArchive/archived") ||
               isActive("/pages/quizArchive/published")
-                ? "text-blue-700"
-                : "text-white"
+                ? "text-blue-700 border-b-2 border-blue-700"
+                : "hover:text-blue-700"
             }`}
           >
             Archive
