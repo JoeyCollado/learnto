@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
   return (
     <div
       className={`h-[50px] w-screen top-0 z-10 absolute flex items-center justify-between px-4 ${
-        isDarkMode ? "bg-slate-700" : "bg-slate-300"
+        isDarkMode ? "bg-slate-800" : "bg-slate-300"
       }`}
     >
       <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
