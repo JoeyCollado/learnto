@@ -14,7 +14,7 @@ const Sidebar = () => {
     <>
       {/* Vertical Sidebar */}
       <div
-        className={`h-screen mt-[5%] bg-slate-700 text-white transition-all duration-300 z-50 ${
+        className={`h-screen mt-[5%] bg-slate-800 text-white transition-all duration-300 z-50 ${
           isOpen ? "w-[200px]" : "w-[85px]"
         } rounded-r-xl  flex-col py-5 relative  md:flex `}
       >
