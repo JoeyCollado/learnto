@@ -89,7 +89,7 @@ const Sidebar = () => {
       </div>
 
       {/* Bottom Horizontal Sidebar (for small screens) */}
-      <div className="fixed bottom-0 left-0 w-full bg-slate-700 text-white flex justify-around py-3 md:hidden text-[10px] z-50 ">
+      <div className="fixed bottom-0 left-0 w-full bg-slate-800 text-white flex justify-around py-3 md:hidden text-[10px] z-50 ">
         <Link
           href="/pages/quizArchive/published"
           className={`flex flex-col items-center rounded-md w-[59px] py-1 ${
