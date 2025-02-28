@@ -132,7 +132,7 @@ const Page = () => {
         </button>
 
         <button
-          className="bg-slate-700 px-2 rounded-md py-1 hover:bg-slate-500"
+          className="bg-green-600 px-2 rounded-md py-1 hover:bg-green-500"
           onClick={handlePublish}
         >
           Publish
