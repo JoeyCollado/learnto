@@ -29,7 +29,7 @@ const Sidebar = () => {
           </span>
         </div>
 
-        <ul className="mt-20 space-y-20 px-6">
+        <ul className="mt-[130px] space-y-20 px-6">
           <li>
             <Link
               href="/pages/quizArchive/published"
