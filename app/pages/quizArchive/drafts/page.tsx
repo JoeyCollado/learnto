@@ -51,7 +51,7 @@ const DraftQuizzes = () => {
                   key={draft.id}
                   className="bg-sky-600 p-4 rounded-md cursor-pointer hover:bg-sky-500 text-center text-gray-700"
                 >
-                  <h3 className="text-xl font-bold text-white" onClick={() => handleEditDraft(draft)}>{draft.title || "Untitled Quiz"}</h3>
+                  <h3 className="font-bold text-white text-[30px]" onClick={() => handleEditDraft(draft)}>{draft.title || "Untitled Quiz"}</h3>
                   <p className="text-sm">Subject: {draft.subject || "No subject"}</p>
                   <p className="text-sm">Time Limit: {draft.time || "No time limit"} minutes</p>
                   <p className="text-sm">Date Created: {draft.dateCreated || "Unknown"}</p>
