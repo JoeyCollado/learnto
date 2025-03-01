@@ -52,10 +52,10 @@ const DraftQuizzes = () => {
                   className="bg-sky-600 p-4 rounded-md cursor-pointer hover:bg-sky-500 text-center text-gray-700"
                 >
                   <h3 className="font-bold text-white text-[30px]" onClick={() => handleEditDraft(draft)}>{draft.title || "Untitled Quiz"}</h3>
-                  <p className="text-sm">Subject: {draft.subject || "No subject"}</p>
-                  <p className="text-sm">Time Limit: {draft.time || "No time limit"} minutes</p>
-                  <p className="text-sm">Date Created: {draft.dateCreated || "Unknown"}</p>
-                  <p className="text-sm">Questions: {draft.questions?.length || 0}</p>
+                  <p className="">Subject: {draft.subject || "No subject"}</p>
+                  <p className="">Time Limit: {draft.time || "No time limit"} minutes</p>
+                  <p className="">Date Created: {draft.dateCreated || "Unknown"}</p>
+                  <p className="">Questions: {draft.questions?.length || 0}</p>
                   <button
                     className="bg-red-600 text-white px-2 py-1 rounded-md mt-2 hover:bg-red-500"
                     onClick={() => handleDeleteDraft(draft.id)}
