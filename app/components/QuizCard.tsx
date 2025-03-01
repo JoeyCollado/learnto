@@ -24,7 +24,7 @@ const QuizCard = ({
       </div>
 
       {/* ✅ Bottom-aligned buttons with tooltips */}
-      <div className="flex justify-between mt-4 relative">
+      <div className="flex gap-2 justify-center mt-4">
 
         {/* Archive Button */}
         <div className="relative flex items-center">
