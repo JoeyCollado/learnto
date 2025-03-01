@@ -49,7 +49,7 @@ const DraftQuizzes = () => {
               {drafts.map((draft) => (
                 <div
                   key={draft.id}
-                  className="bg-yellow-500 p-4 rounded-md cursor-pointer hover:bg-yellow-400 text-center"
+                  className="bg-sky-600 p-4 rounded-md cursor-pointer hover:bg-yellow-400 text-center"
                 >
                   <h3 className="text-xl font-bold" onClick={() => handleEditDraft(draft)}>{draft.title || "Untitled Quiz"}</h3>
                   <p className="text-sm">Subject: {draft.subject || "No subject"}</p>

@@ -18,9 +18,9 @@ const QuizCard = ({
     <div className="bg-sky-600 shadow-md rounded-lg p-4 text-center flex flex-col justify-between h-full">
       <div>
         <h2 className="text-[30px] font-bold mt-2">{quiz.title}</h2>
-        <p className="text-gray-600">Subject: {quiz.subject}</p>
-        <p className="text-gray-600">Questions: {quiz.questions}</p>
-        <p className="text-gray-600 text-sm">Date: {quiz.dateCreated}</p>
+        <p className={`text-gray-700`}>Subject: {quiz.subject}</p>
+        <p className="text-gray-700">Questions: {quiz.questions}</p>
+        <p className="text-gray-700 text-sm">Date: {quiz.dateCreated}</p>
       </div>
 
       {/* ✅ Bottom-aligned buttons with tooltips */}
