@@ -25,22 +25,6 @@ const QuizCard = ({
 
       {/* ✅ Bottom-aligned buttons with tooltips */}
       <div className="flex justify-between mt-4 relative">
-        {/* Add to Collection Button */}
-        <div className="relative flex items-center">
-          <button 
-            className="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded-md w-[50px] h-[30px]"
-            onClick={() => onAddToCollection && onAddToCollection(quiz)} // ✅ Add quiz to collection
-            onMouseEnter={() => setHoveredButton("add")}
-            onMouseLeave={() => setHoveredButton(null)}
-          >
-            ➕
-          </button>
-          {hoveredButton === "add" && (
-            <span className="absolute bottom-full mb-2 w-max bg-black text-white text-xs px-2 py-1 rounded-md">
-              Add this quiz to collection?
-            </span>
-          )}
-        </div>
 
         {/* Archive Button */}
         <div className="relative flex items-center">
