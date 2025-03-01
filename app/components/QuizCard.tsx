@@ -19,6 +19,7 @@ const QuizCard = ({
       <div>
         <h2 className="text-[30px] font-bold mt-2">{quiz.title}</h2>
         <p className={`text-gray-700`}>Subject: {quiz.subject}</p>
+        <p className="text-gray-700">Time Limit: {quiz.time || "No time limit"} minutes</p>
         <p className="text-gray-700">Questions: {quiz.questions}</p>
         <p className="text-gray-700 text-sm">Date: {quiz.dateCreated}</p>
       </div>
