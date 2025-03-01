@@ -55,7 +55,7 @@ const DraftQuizzes = () => {
                   <p className="">Subject: {draft.subject || "No subject"}</p>
                   <p className="">Time Limit: {draft.time || "No time limit"} minutes</p>
                   <p className="">Questions: {draft.questions?.length || 0}</p>
-                  <p className="text-sm">Date Created: {draft.dateCreated || "Unknown"}</p>
+                  <p className="text-sm">Date: {draft.dateCreated || "Unknown"}</p>
                   
                   <button
                     className="bg-red-600 text-white px-2 py-1 rounded-md mt-2 hover:bg-red-500"
