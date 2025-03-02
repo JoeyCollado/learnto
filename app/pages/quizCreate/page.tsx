@@ -175,7 +175,7 @@ const Page = () => {
 
       <div className="flex justify-center mt-4">
         <button
-          className="bg-slate-700 px-2 rounded-md py-1"
+          className="bg-orange-600 hover:bg-orange-500 px-2 rounded-md py-1"
           onClick={() => router.push("/pages/quizCreate/addQuestion")}
         >
           Add Questions
