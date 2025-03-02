@@ -194,7 +194,7 @@ const Page = () => {
                   {q.question}
                 </h2>
                 <button
-                  className="bg-red-500 px-2 text-center pr-10 py-1 rounded-md text-white"
+                  className="bg-red-700 hover:bg-red-600 px-2 text-center pr-10 py-1 rounded-md text-white"
                   onClick={() => handleDeleteQuestion(q.id)}
                 >
                   ❌ Delete
