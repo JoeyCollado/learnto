@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
               isActive("/pages/quizArchive/archived") ||
               isActive("/pages/quizArchive/published")
                 ? "text-blue-700 border-b-2 border-blue-700"
-                : "hover:text-blue-700"
+                : ""
             }`}
           >
             Archive
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
               className={`hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/quizCreate")
                   ? "text-blue-700 border-b-2 border-blue-700"
-                  : "hover:text-blue-700"
+                  : ""
               }`}
             >
               Create Quiz
@@ -69,7 +69,7 @@ const Navbar: React.FC = () => {
               className={`md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/quizCreate")
                   ? "text-blue-700 border-b-2 border-blue-700"
-                  : "hover:text-blue-700"
+                  : ""
               }`}
             >
               Create
