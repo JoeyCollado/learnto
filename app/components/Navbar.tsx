@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
           </Link>
           <Link
             href="/pages/quizArchive/published"
-            className={`hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out ${
+            className={`hidden md:block hover:text-blue-700 hover:border-b-2 border-blue-700 transition-all duration-300 ease-in-out ${
               isActive("/pages/quizArchive/drafts") ||
               isActive("/pages/quizArchive/archived") ||
               isActive("/pages/quizArchive/published")
@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
 
           <Link href="/pages/quizCreate">
             <li
-              className={`hidden md:block hover:text-blue-700 transition-all duration-300 ease-in-out ${
+              className={`hidden md:block hover:text-blue-700 hover:border-b-2 border-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/quizCreate")
                   ? "text-blue-700 border-b-2 border-blue-700"
                   : ""
@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
               Create Quiz
             </li>
             <li
-              className={`md:hidden hover:text-blue-700 transition-all duration-300 ease-in-out ${
+              className={`md:hidden hover:text-blue-700  hover:border-b-2 border-blue-700 transition-all duration-300 ease-in-out ${
                 isActive("/pages/quizCreate")
                   ? "text-blue-700 border-b-2 border-blue-700"
                   : ""
