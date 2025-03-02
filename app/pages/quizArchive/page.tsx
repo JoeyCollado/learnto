@@ -12,10 +12,10 @@ const Page = () => {
   return (
     <>
       <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-      <div className={`${isDarkMode ? "bg-slate-900 text-white" : "bg-slate-100 text-black"} min-h-screen p-4`}>
+      <div className={`${isDarkMode ? "bg-slate-900 text-white" : "bg-slate-100 text-black"} min-h-screen p-4 z-10`}>
         <Navbar />
         <Sidebar />
-        <h1 className="text-3xl font-bold text-center mt-10">Your Page Content</h1>
+     
       </div>
     </>
   );
