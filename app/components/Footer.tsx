@@ -16,7 +16,7 @@ const Footer = () => {
         </Link>
       </ul>
       <p className="text-center bottom-0 pt-10">
-        © All rights reserved to LearnTo 2025{" "}
+        © All rights reserved to LearnTo 2025
       </p>
     </div>
   );
