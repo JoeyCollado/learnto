@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="h-[110px] w-screen bottom-0 bg-slate-600 flex flex-col">
+    <div className="h-[110px] w-screen bottom-0 bg-slate-800 flex flex-col">
       <ul className="flex gap-10 justify-end mr-10 mt-2">
         <Link href="#">
           <li>Facebook</li>
