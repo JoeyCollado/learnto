@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import { Facebook, Github, Twitter } from "lucide-react";
-import { useTheme } from "./theme-context";
+import { useTheme } from "./theme-context"; //just import this to any component to inherit darkmode logic
 
 const Footer = () => {
   const { isDarkMode } = useTheme(); // Get dark mode state from context
