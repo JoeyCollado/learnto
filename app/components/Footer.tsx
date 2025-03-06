@@ -13,7 +13,7 @@ const Footer = ({isdarkMode}) => {
           <Twitter/>
         </Link>
         <Link href="https://www.facebook.com/joeyaibert31/">
-          <Facebook/>
+          <Facebook className="hover:text-blue-700"/>
         </Link>
       </ul>
       <p className="text-center pt-10">
