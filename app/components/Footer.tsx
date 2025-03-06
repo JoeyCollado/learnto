@@ -7,7 +7,7 @@ const Footer = ({isdarkMode}) => {
     <div className={`h-[110px] w-screen bottom-0 ${isdarkMode ? "bg-slate-800" : "bg-slate-300"}  flex flex-col`}>
       <ul className="flex gap-10 justify-end mr-14 mt-4">
         <Link href="https://github.com/JoeyCollado">
-          <Github/>
+          <Github className="hover:text-blue-700"/>
         </Link>
         <Link href="#">
           <Twitter/>
