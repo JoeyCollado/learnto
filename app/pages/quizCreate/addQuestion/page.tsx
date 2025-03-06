@@ -103,7 +103,7 @@ const AddQuestion = () => {
         ✅ Save Question
       </button>
 
-      <button className="bg-red-600 px-4 py-2 rounded-md mt-2 text-white" onClick={() => router.push("/pages/quizCreate")}>
+      <button className="bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md mt-2 text-white" onClick={() => router.push("/pages/quizCreate")}>
         ❌ Cancel
       </button>
     </div>
