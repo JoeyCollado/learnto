@@ -52,7 +52,7 @@ const AddQuestion = () => {
 
   return (
     <div className="bg-blue-900 h-screen w-full flex flex-col items-center justify-center p-5 text-black">
-      <h1 className="text-3xl mb-5">Add a New Question</h1>
+      <h1 className={`text-3xl mb-5 text-white`}>Add a New Question</h1>
 
       <p className="mb-2 text-gray-200 font-semibold">Enter your question here:</p>
       <input
