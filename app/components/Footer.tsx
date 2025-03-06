@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div className="h-[110px] w-screen bottom-0 bg-slate-800 flex flex-col">
       <ul className="flex gap-10 justify-end mr-10 mt-2">
-        <Link href="#">
+        <Link href="https://github.com/JoeyCollado">
           <Github/>
         </Link>
         <Link href="#">
