@@ -10,7 +10,7 @@ const Footer = ({isdarkMode}) => {
           <Github className="hover:text-blue-700"/>
         </Link>
         <Link href="#">
-          <Twitter/>
+          <Twitter className="hover:text-blue-700"/>
         </Link>
         <Link href="https://www.facebook.com/joeyaibert31/">
           <Facebook className="hover:text-blue-700"/>
