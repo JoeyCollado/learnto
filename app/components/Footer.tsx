@@ -1,13 +1,13 @@
 import Link from "next/link";
 import React from "react";
-import { Facebook, Twitter } from "lucide-react";
+import { Facebook, Github, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
     <div className="h-[110px] w-screen bottom-0 bg-slate-800 flex flex-col">
       <ul className="flex gap-10 justify-end mr-10 mt-2">
         <Link href="#">
-          
+          <Github/>
         </Link>
         <Link href="#">
           <Twitter/>
