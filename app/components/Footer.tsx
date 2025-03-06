@@ -2,9 +2,9 @@ import Link from "next/link";
 import React from "react";
 import { Facebook, Github, Twitter } from "lucide-react";
 
-const Footer = () => {
+const Footer = ({isdarkMode}) => {
   return (
-    <div className="h-[110px] w-screen bottom-0 bg-slate-800 flex flex-col">
+    <div className={`h-[110px] w-screen bottom-0 ${isdarkMode ? "bg-slate-800" : "bg-slate-300"}  flex flex-col`}>
       <ul className="flex gap-10 justify-end mr-10 mt-2">
         <Link href="https://github.com/JoeyCollado">
           <Github/>
