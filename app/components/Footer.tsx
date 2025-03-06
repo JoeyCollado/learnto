@@ -5,7 +5,7 @@ import { Facebook, Github, Twitter } from "lucide-react";
 const Footer = ({isdarkMode}) => {
   return (
     <div className={`h-[110px] w-screen bottom-0 ${isdarkMode ? "bg-slate-800" : "bg-slate-300"}  flex flex-col`}>
-      <ul className="flex gap-10 justify-end mr-10 mt-2">
+      <ul className="flex gap-10 justify-end mr-14 mt-4">
         <Link href="https://github.com/JoeyCollado">
           <Github/>
         </Link>
@@ -16,7 +16,7 @@ const Footer = ({isdarkMode}) => {
           <Facebook/>
         </Link>
       </ul>
-      <p className="text-center bottom-0 pt-10">
+      <p className="text-center pt-10">
         © All rights reserved to LearnTo 2025
       </p>
     </div>
