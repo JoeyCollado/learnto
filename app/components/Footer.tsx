@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { Facebook } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -12,7 +13,7 @@ const Footer = () => {
           <li>Facebook</li>
         </Link>
         <Link href="#">
-          <li>Facebook</li>
+          <Facebook/>
         </Link>
       </ul>
       <p className="text-center bottom-0 pt-10">
