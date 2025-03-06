@@ -12,7 +12,7 @@ const Footer = () => {
         <Link href="#">
           <Twitter/>
         </Link>
-        <Link href="#">
+        <Link href="https://www.facebook.com/joeyaibert31/">
           <Facebook/>
         </Link>
       </ul>
