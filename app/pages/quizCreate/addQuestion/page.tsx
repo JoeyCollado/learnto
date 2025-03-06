@@ -95,7 +95,7 @@ const AddQuestion = () => {
         </div>
       ))}
 
-      <button className="bg-green-600 px-4 py-2 rounded-md mt-2 text-white" onClick={handleAddOption}>
+      <button className="bg-green-600 hover:bg-green-500 px-4 py-2 rounded-md mt-2 text-white" onClick={handleAddOption}>
         + Add Option
       </button>
 
