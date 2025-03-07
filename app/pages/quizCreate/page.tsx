@@ -190,7 +190,7 @@ const Page = () => {
             <div key={q.id} className={`${isDarkMode ? "bg-slate-700" : "bg-slate-100"} p-6 rounded-lg mb-6  `}>
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-semibold">
-                  <span className="text-gray-700 mr-2">Q{index + 1}.</span>
+                  <span className={` ${isDarkMode ? "text-white" : "text-black"} mr-2`}>Q{index + 1}.</span>
                   {q.question}
                 </h2>
                 <button
