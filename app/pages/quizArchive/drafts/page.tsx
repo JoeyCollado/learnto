@@ -11,6 +11,7 @@ import { useTheme } from "@/app/components/theme-context";
 const DraftQuizzes = () => {
   const router = useRouter();
   const [drafts, setDrafts] = useState<Quiz[]>([]);
+  const {isDarkMode} = useTheme();
 
   useEffect(() => {
     // ✅ Load unfinished drafts
@@ -45,7 +46,7 @@ const DraftQuizzes = () => {
         <Sidebar />
 
         <div className="flex-1 p-6 mt-[5%]">
-          <div className="bg-slate-800 rounded-md p-6 max-h-[580px] overflow-y-auto custom-scroll">
+          <div className={`${isDarkMode ? "bg-slate-800" : "bg-slate-300"} rounded-md p-6 max-h-[580px] overflow-y-auto custom-scroll`}>
             <div className="text-center text-3xl py-2 pb-10">Drafts</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {drafts.map((draft) => (
