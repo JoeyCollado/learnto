@@ -3,18 +3,20 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Menu, ChevronLeft, ChevronRight, Book } from "lucide-react";
+import { useTheme } from "@/app/components/theme-context";
+
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const pathname = usePathname(); // get current route
-
+  const { isDarkMode } = useTheme();
   const isActive = (path: string) => pathname === path; // function to check if link is active
 
   return (
     <>
       {/* Vertical Sidebar */}
       <div
-        className={`h-screen mt-[5%] bg-slate-800 md:block hidden text-white transition-all duration-300 z-50 ${
+        className={`h-screen mt-[5%] ${isDarkMode ? "bg-slate-800" : "bg-slate-300"} md:block hidden text-white transition-all duration-300 z-50 ${
           isOpen ? "w-[200px]" : "w-[85px]"
         } rounded-r-xl  flex-col py-5 relative  md:flex `}
       >
