@@ -190,7 +190,7 @@ const Page = () => {
             <div key={q.id} className={`${isDarkMode ? "bg-blue-900" : "bg-slate-100"} p-6 rounded-lg mb-6  `}>
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-semibold">
-                  <span className="text-gray-300 mr-2">Q{index + 1}.</span>
+                  <span className="text-gray-700 mr-2">Q{index + 1}.</span>
                   {q.question}
                 </h2>
                 <button
@@ -202,7 +202,7 @@ const Page = () => {
               </div>
 
               {/* Display Options Below Question */}
-              <ul className="mt-3 pl-5 text-gray-300">
+              <ul className="mt-3 pl-5 text-gray-700">
                 {q.options.map((option, optIndex) => (
                   <li key={optIndex} className="flex items-center">
                     <span className="font-bold mr-2">
