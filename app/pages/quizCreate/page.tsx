@@ -182,7 +182,7 @@ const Page = () => {
         </button>
       </div>
 
-      <div className={`questions ${isDarkMode ? "bg-blue-900" : "bg-slate-200"} mt-4 p-4 rounded-lg`}>
+      <div className={`questions ${isDarkMode ? "bg-slate-900" : "bg-slate-200"} mt-4 p-4 rounded-lg`}>
         {questions.length === 0 ? (
           <p className="text-center text-gray-300">No questions added yet.</p>
         ) : (
