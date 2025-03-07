@@ -187,7 +187,7 @@ const Page = () => {
           <p className="text-center text-gray-300">No questions added yet.</p>
         ) : (
           questions.map((q, index) => (
-            <div key={q.id} className="bg-slate-600 p-6 rounded-lg mb-6">
+            <div key={q.id} className={`${isDarkMode ? "bg-blue-900" : "bg-slate-100"} p-6 rounded-lg mb-6  `}>
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-semibold">
                   <span className="text-gray-300 mr-2">Q{index + 1}.</span>
