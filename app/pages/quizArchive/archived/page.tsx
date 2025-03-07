@@ -5,9 +5,12 @@ import { Quiz } from "../published/types";
 import QuizCard from "@/app/components/QuizCard";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
+import { useTheme } from "@/app/components/theme-context";
+
 
 const ArchivedQuizzes = () => {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+  const {isDarkMode} = useTheme();
 
   useEffect(() => {
     const storedQuizzes = localStorage.getItem("archivedQuizzes");
