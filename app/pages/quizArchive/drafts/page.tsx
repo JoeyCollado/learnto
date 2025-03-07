@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { Quiz } from "../published/types";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
+import { useTheme } from "@/app/components/theme-context";
+
 
 const DraftQuizzes = () => {
   const router = useRouter();
