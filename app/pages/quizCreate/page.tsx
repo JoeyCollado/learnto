@@ -202,7 +202,7 @@ const Page = () => {
               </div>
 
               {/* Display Options Below Question */}
-              <ul className="mt-3 pl-5 text-gray-700">
+              <ul className={`mt-3 pl-5 ${isDarkMode ? "text-white" : "text-black"}`}>
                 {q.options.map((option, optIndex) => (
                   <li key={optIndex} className="flex items-center">
                     <span className="font-bold mr-2">
