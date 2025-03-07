@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTheme } from "@/app/components/theme-context";
+
 
 const AddQuestion = () => {
   const router = useRouter();
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState([""]);
   const [correctOption, setCorrectOption] = useState<number | null>(null);
+  const {isDarkMode} = useTheme();
 
   const handleAddOption = () => {
     setOptions([...options, ""]);
@@ -51,7 +54,7 @@ const AddQuestion = () => {
   };
 
   return (
-    <div className="bg-blue-900 h-screen w-full flex flex-col items-center justify-center p-5 text-black">
+    <div className={`${isDarkMode ? "bg-blue-900" : "bg-slate-300"} h-screen w-full flex flex-col items-center justify-center p-5 text-black`}>
       <h1 className={`text-3xl mb-5 text-white`}>Add a New Question</h1>
 
       <p className="mb-2 text-gray-200 font-semibold">Enter your question here:</p>
