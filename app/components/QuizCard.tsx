@@ -15,7 +15,7 @@ const QuizCard = ({
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
 
   return (
-    <div className="bg-sky-600 hover:bg-sky-500 shadow-md rounded-lg p-4 text-center flex flex-col justify-between h-full">
+    <div className="bg-sky-600 hover:bg-sky-500 shadow-md rounded-lg pb-7 text-center flex flex-col justify-between h-full md:w-[240px]">
       <div>
         <h2 className="text-[30px] font-bold mt-2">{quiz.title}</h2>
         <p className={`text-gray-700`}>Subject: {quiz.subject}</p>
