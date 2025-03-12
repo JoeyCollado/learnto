@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Quiz } from "../published/types";
+import { Quiz } from "./types";
 import QuizCard from "@/app/components/QuizCard";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
@@ -11,7 +11,6 @@ const PublishedQuizzes = () => {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const { isDarkMode } = useTheme();
 
-
   useEffect(() => {
     const storedQuizzes = localStorage.getItem("publishedQuizzes");
     if (storedQuizzes) {
@@ -19,23 +18,30 @@ const PublishedQuizzes = () => {
     }
   }, []);
 
-  // ✅ Function to add quiz to a collection
-  const handleAddToCollection = (quiz: Quiz) => {
-    const collectionName = prompt("Enter collection name:");
-    if (!collectionName) return;
+  const handleDelete = (id: number) => {
+    const updatedQuizzes = quizzes.filter((quiz) => quiz.id !== id);
+    setQuizzes(updatedQuizzes);
+    localStorage.setItem("publishedQuizzes", JSON.stringify(updatedQuizzes));
+  };
+  
 
-    // Get existing collections from localStorage
-    const collections = JSON.parse(localStorage.getItem("quizCollections") || "{}");
+  // Archive a quiz
+  const handleArchive = (id: number) => {
+    const storedPublishedQuizzes = JSON.parse(localStorage.getItem("publishedQuizzes") || "[]");
+    const quizToArchive = storedPublishedQuizzes.find((quiz: Quiz) => quiz.id === id);
 
-    // Add quiz to selected collection
-    if (!collections[collectionName]) {
-      collections[collectionName] = [];
-    }
-    collections[collectionName].push(quiz);
+    if (!quizToArchive) return;
 
-    // Save to localStorage
-    localStorage.setItem("quizCollections", JSON.stringify(collections));
-    alert(`Quiz added to "${collectionName}" collection!`);
+    // Remove from published quizzes
+    const updatedPublishedQuizzes = storedPublishedQuizzes.filter((quiz: Quiz) => quiz.id !== id);
+    localStorage.setItem("publishedQuizzes", JSON.stringify(updatedPublishedQuizzes));
+
+    // Add to archived quizzes
+    const archivedQuizzes = JSON.parse(localStorage.getItem("archivedQuizzes") || "[]");
+    localStorage.setItem("archivedQuizzes", JSON.stringify([...archivedQuizzes, quizToArchive]));
+
+    // Update state
+    setQuizzes(updatedPublishedQuizzes);
   };
 
   return (
@@ -43,15 +49,18 @@ const PublishedQuizzes = () => {
       <Navbar />
       <div className="flex">
         <Sidebar />
-
-        <div className="flex-1 p-20  mt-[5%] z-10">
+        <div className="flex-1 p-20 mt-[5%] z-10">
           <div className={`${isDarkMode ? "bg-slate-800" : "bg-slate-300"} rounded-md max-h-[580px] overflow-y-auto custom-scroll`}>
             <div className="text-center text-3xl pb-10 mt-10">Published Quizzes</div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-16 mx-10 gap-5 md:p-5">
-              {quizzes.map((quiz) => (
-                <QuizCard key={quiz.id} quiz={quiz} onDelete={() => {}} onAddToCollection={handleAddToCollection} />
-              ))}
-            </div>
+            {quizzes.length === 0 ? (
+              <p className="text-center text-gray-500 py-10">No published quizzes available.</p>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-16 mx-10 gap-5 md:p-5">
+                {quizzes.map((quiz) => (
+                  <QuizCard key={quiz.id} quiz={quiz} onArchive={handleArchive} onDelete={handleDelete} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
