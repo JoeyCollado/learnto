@@ -45,10 +45,10 @@ const DraftQuizzes = () => {
       <div className="flex">
         <Sidebar />
 
-        <div className="flex-1 p-6 mt-[5%]">
-          <div className={`${isDarkMode ? "bg-slate-800" : "bg-slate-300"} rounded-md p-6 max-h-[580px] overflow-y-auto custom-scroll`}>
-            <div className="text-center text-3xl py-2 pb-10">Drafts</div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="flex-1 p-20  mt-[5%] z-10">
+          <div className={`${isDarkMode ? "bg-slate-800" : "bg-slate-300"} rounded-md max-h-[580px] overflow-y-auto custom-scroll`}>
+            <div className="text-center text-3xl pb-10 mt-10">Drafts</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-16 mx-10 gap-5 md:p-5">
               {drafts.map((draft) => (
                 <div
                   key={draft.id}
