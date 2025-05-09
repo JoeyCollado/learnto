@@ -73,7 +73,7 @@ const Page = () => {
       setQuestions(data);
     };
     fetchQuestions();
-  }, [quizId]);
+  }, [quizId, searchParams]);
 
   const handleDeleteQuestion = async (id: string) => {
     const updatedQuestions = questions.filter((q) => q._id !== id);
