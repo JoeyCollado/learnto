@@ -14,29 +14,37 @@ const DraftQuizzes = () => {
   const {isDarkMode} = useTheme();
 
   useEffect(() => {
-    // ✅ Load unfinished drafts
-    const storedDrafts = localStorage.getItem("draftQuizzes");
-    if (storedDrafts) {
-      setDrafts(JSON.parse(storedDrafts));
-    }
+    // Fetch data from MongoDB instead of localStorage
+    const fetchDrafts = async () => {
+      const response = await fetch('/api/quiz/drafts');
+      const data = await response.json();
+      setDrafts(data);
+    };
+    fetchDrafts();
   }, []);
 
   // ✅ Click draft to continue editing
-  const handleEditDraft = (draft: Quiz) => {
-    localStorage.setItem("quizTitle", draft.title);
-    localStorage.setItem("quizSubject", draft.subject);
-    localStorage.setItem("timeLimit", draft.time);
-    localStorage.setItem("questions", JSON.stringify(draft.questions));
-    localStorage.setItem("dateCreated", draft.dateCreated);
+  const handleEditDraft = async (draft: Quiz) => {
+    // Update MongoDB instead of localStorage
+    await fetch('/api/quiz/edit', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(draft),
+    });
 
     router.push("/pages/quizCreate"); // Redirect to quiz creation page
   };
 
   // ✅ Delete draft
-  const handleDeleteDraft = (draftId: number) => {
+  const handleDeleteDraft = async (draftId: number) => {
     const updatedDrafts = drafts.filter((draft) => draft.id !== draftId);
     setDrafts(updatedDrafts);
-    localStorage.setItem("draftQuizzes", JSON.stringify(updatedDrafts));
+    // Update MongoDB instead of localStorage
+    await fetch('/api/quiz/drafts', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: draftId }),
+    });
   };
 
   return (

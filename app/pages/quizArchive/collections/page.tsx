@@ -11,10 +11,13 @@ const Collections = () => {
   const router = useRouter(); // ✅ Use router for navigation
 
   useEffect(() => {
-    const storedCollections = localStorage.getItem("quizCollections");
-    if (storedCollections) {
-      setCollections(JSON.parse(storedCollections));
-    }
+    // Fetch data from MongoDB instead of localStorage
+    const fetchCollections = async () => {
+      const response = await fetch('/api/quiz/collections');
+      const data = await response.json();
+      setCollections(data);
+    };
+    fetchCollections();
   }, []);
 
   return (

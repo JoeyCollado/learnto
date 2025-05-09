@@ -1,49 +1,109 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@/app/components/theme-context";
 
 const Page = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { isDarkMode } = useTheme();
 
   const [questions, setQuestions] = useState<
-    { id: number; question: string; options: string[] }[]
+    { _id: string; question: string; options: string[] }[]
   >([]);
   const [quizTitle, setQuizTitle] = useState("");
   const [quizSubject, setQuizSubject] = useState("");
   const [timeLimit, setTimeLimit] = useState("");
   const [draftSaved, setDraftSaved] = useState(false);
+  const [quizId, setQuizId] = useState<string | null>(null);
 
   useEffect(() => {
-    const savedQuestions = localStorage.getItem("questions");
-    if (savedQuestions) setQuestions(JSON.parse(savedQuestions));
+    // Get quizId from URL or create new quiz
+    const existingQuizId = searchParams.get('quizId');
+    if (existingQuizId === 'null' || existingQuizId === null) {
+      router.replace('/pages/quizCreate');
+      return;
+    }
+    if (existingQuizId) {
+      setQuizId(existingQuizId);
+      // Fetch existing quiz data
+      const fetchQuiz = async () => {
+        const response = await fetch(`/api/quiz?id=${existingQuizId}`);
+        const data = await response.json();
+        if (data) {
+          setQuizTitle(data.title || '');
+          setQuizSubject(data.subject || '');
+          setTimeLimit(data.time || '');
+        }
+      };
+      fetchQuiz();
+    } else {
+      // Create new quiz only if no quizId exists
+      const createNewQuiz = async () => {
+        const response = await fetch('/api/quiz', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: '',
+            subject: '',
+            time: '',
+            questions: [],
+            dateCreated: new Date().toLocaleDateString(),
+            status: 'draft'
+          }),
+        });
+        const data = await response.json();
+        if (data && data._id) {
+          setQuizId(data._id);
+          // Update URL with new quizId
+          router.replace(`/pages/quizCreate?quizId=${data._id}`);
+        }
+      };
+      createNewQuiz();
+    }
+  }, [searchParams, router]);
 
-    const savedTitle = localStorage.getItem("quizTitle");
-    if (savedTitle) setQuizTitle(savedTitle);
+  useEffect(() => {
+    // Fetch questions for this quiz
+    const fetchQuestions = async () => {
+      if (!quizId) return;
+      const response = await fetch(`/api/quiz/questions?quizId=${quizId}`);
+      const data = await response.json();
+      setQuestions(data);
+    };
+    fetchQuestions();
+  }, [quizId]);
 
-    const savedSubject = localStorage.getItem("quizSubject");
-    if (savedSubject) setQuizSubject(savedSubject);
-
-    const savedTimeLimit = localStorage.getItem("timeLimit");
-    if (savedTimeLimit) setTimeLimit(savedTimeLimit);
-  }, []);
-
-  const handleDeleteQuestion = (id: number) => {
-    const updatedQuestions = questions.filter((q) => q.id !== id);
+  const handleDeleteQuestion = async (id: string) => {
+    const updatedQuestions = questions.filter((q) => q._id !== id);
     setQuestions(updatedQuestions);
-    localStorage.setItem("questions", JSON.stringify(updatedQuestions));
+    await fetch('/api/quiz/questions', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
   };
 
   const handleInputChange =
     (setter: React.Dispatch<React.SetStateAction<string>>, key: string) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    async (event: React.ChangeEvent<HTMLInputElement>) => {
       setter(event.target.value);
-      localStorage.setItem(key, event.target.value);
+      if (!quizId) return;
+      
+      await fetch('/api/quiz', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          id: quizId,
+          [key]: event.target.value 
+        }),
+      });
     };
 
-  const handlePublish = () => {
+  const handlePublish = async () => {
+    if (!quizId) return;
+    
     if (!quizTitle.trim() || !quizSubject.trim() || !timeLimit.trim()) {
       alert("Please fill in all the fields before publishing.");
       return;
@@ -54,61 +114,57 @@ const Page = () => {
       return;
     }
 
-    const newQuiz = {
-      id: Date.now(),
-      title: quizTitle,
-      subject: quizSubject,
-      time: timeLimit,
-      questions: questions.length,
-      dateCreated: new Date().toLocaleDateString(),
-    };
-
-    let existingQuizzes = JSON.parse(
-      localStorage.getItem("publishedQuizzes") || "[]"
-    );
-
-    if (existingQuizzes.length >= 10) {
-      existingQuizzes.shift();
-    }
-
-    localStorage.setItem(
-      "publishedQuizzes",
-      JSON.stringify([...existingQuizzes, newQuiz])
-    );
-
-    localStorage.removeItem("quizTitle");
-    localStorage.removeItem("quizSubject");
-    localStorage.removeItem("timeLimit");
-    localStorage.removeItem("questions");
+    await fetch('/api/quiz/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: quizId,
+        title: quizTitle,
+        subject: quizSubject,
+        time: timeLimit,
+        questions: questions.length,
+        dateCreated: new Date().toLocaleDateString(),
+        status: 'published'
+      }),
+    });
 
     setQuizTitle("");
     setQuizSubject("");
     setTimeLimit("");
     setQuestions([]);
+    setQuizId(null);
 
     router.push("/pages/quizArchive/published");
   };
 
-  const handleSaveDraft = () => {
-    const newDraft = {
-      id: Date.now(),
-      title: quizTitle,
-      subject: quizSubject,
-      time: timeLimit,
-      questions: questions,
-      dateCreated: new Date().toLocaleDateString(),
-    };
+  const handleSaveDraft = async () => {
+    if (!quizId) return;
+    
+    try {
+      const response = await fetch('/api/quiz/drafts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: quizId,
+          title: quizTitle,
+          subject: quizSubject,
+          time: timeLimit,
+          questions: questions.map(q => q._id),
+          dateCreated: new Date().toLocaleDateString(),
+          status: 'draft'
+        }),
+      });
 
-    let existingDrafts = JSON.parse(
-      localStorage.getItem("draftQuizzes") || "[]"
-    );
+      if (!response.ok) {
+        throw new Error('Failed to save draft');
+      }
 
-    localStorage.setItem(
-      "draftQuizzes",
-      JSON.stringify([...existingDrafts, newDraft])
-    );
-
-    alert("✅ Draft saved successfully!");
+      setDraftSaved(true);
+      setTimeout(() => setDraftSaved(false), 3000);
+    } catch (error) {
+      console.error('Error saving draft:', error);
+      alert('Failed to save draft. Please try again.');
+    }
   };
 
   return (
@@ -125,10 +181,10 @@ const Page = () => {
           Generate with AI
         </button>
         <button
-          className="bg-yellow-500 px-2 rounded-md py-1 hover:bg-yellow-400"
+          className={`${draftSaved ? 'bg-green-500' : 'bg-yellow-500'} px-2 rounded-md py-1 hover:bg-yellow-400`}
           onClick={handleSaveDraft}
         >
-          Save Draft
+          {draftSaved ? '✅ Draft Saved!' : 'Save Draft'}
         </button>
 
         <button
@@ -149,7 +205,7 @@ const Page = () => {
             className={`w-fit p-1 rounded-md text-black`}
             type="text"
             value={quizTitle}
-            onChange={handleInputChange(setQuizTitle, "quizTitle")}
+            onChange={handleInputChange(setQuizTitle, "title")}
           />
         </label>
         <label>
@@ -158,7 +214,7 @@ const Page = () => {
             className="w-fit p-1 rounded-md text-black"
             type="text"
             value={quizSubject}
-            onChange={handleInputChange(setQuizSubject, "quizSubject")}
+            onChange={handleInputChange(setQuizSubject, "subject")}
           />
         </label>
         <label>
@@ -168,7 +224,7 @@ const Page = () => {
             type="number"
             min="1"
             value={timeLimit}
-            onChange={handleInputChange(setTimeLimit, "timeLimit")}
+            onChange={handleInputChange(setTimeLimit, "time")}
           />
         </label>
       </div>
@@ -176,7 +232,7 @@ const Page = () => {
       <div className="flex justify-center mt-4">
         <button
           className="bg-orange-600 hover:bg-orange-500 px-2 rounded-md py-1"
-          onClick={() => router.push("/pages/quizCreate/addQuestion")}
+          onClick={() => router.push(`/pages/quizCreate/addQuestion?quizId=${quizId}`)}
         >
           Add Questions
         </button>
@@ -187,7 +243,7 @@ const Page = () => {
           <p className="text-center text-gray-300">No questions added yet.</p>
         ) : (
           questions.map((q, index) => (
-            <div key={q.id} className={`${isDarkMode ? "bg-slate-700" : "bg-slate-100"} p-6 rounded-lg mb-6  `}>
+            <div key={q._id} className={`${isDarkMode ? "bg-slate-700" : "bg-slate-100"} p-6 rounded-lg mb-6  `}>
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-semibold">
                   <span className={` ${isDarkMode ? "text-white" : "text-black"} mr-2`}>Q{index + 1}.</span>
@@ -195,7 +251,7 @@ const Page = () => {
                 </h2>
                 <button
                   className="bg-red-700 hover:bg-red-600 px-2 text-center pr-10 py-1 rounded-md text-white"
-                  onClick={() => handleDeleteQuestion(q.id)}
+                  onClick={() => handleDeleteQuestion(q._id)}
                 >
                   ❌ Delete
                 </button>

@@ -13,8 +13,13 @@ const CollectionDetail = () => {
 
   useEffect(() => {
     if (collectionName) {
-      const storedCollections = JSON.parse(localStorage.getItem("quizCollections") || "{}");
-      setQuizzes(storedCollections[collectionName] || []);
+      // Fetch data from MongoDB instead of localStorage
+      const fetchQuizzes = async () => {
+        const response = await fetch(`/api/quiz/collections/${collectionName}`);
+        const data = await response.json();
+        setQuizzes(data);
+      };
+      fetchQuizzes();
     }
   }, [collectionName]);
 

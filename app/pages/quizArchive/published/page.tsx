@@ -12,36 +12,41 @@ const PublishedQuizzes = () => {
   const { isDarkMode } = useTheme();
 
   useEffect(() => {
-    const storedQuizzes = localStorage.getItem("publishedQuizzes");
-    if (storedQuizzes) {
-      setQuizzes(JSON.parse(storedQuizzes));
-    }
+    // Fetch data from MongoDB instead of localStorage
+    const fetchQuizzes = async () => {
+      const response = await fetch('/api/quiz/published');
+      const data = await response.json();
+      setQuizzes(data);
+    };
+    fetchQuizzes();
   }, []);
 
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: number) => {
     const updatedQuizzes = quizzes.filter((quiz) => quiz.id !== id);
     setQuizzes(updatedQuizzes);
-    localStorage.setItem("publishedQuizzes", JSON.stringify(updatedQuizzes));
+    // Update MongoDB instead of localStorage
+    await fetch('/api/quiz/published', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
   };
-  
 
   // Archive a quiz
-  const handleArchive = (id: number) => {
-    const storedPublishedQuizzes = JSON.parse(localStorage.getItem("publishedQuizzes") || "[]");
-    const quizToArchive = storedPublishedQuizzes.find((quiz: Quiz) => quiz.id === id);
-
+  const handleArchive = async (id: number) => {
+    const quizToArchive = quizzes.find((quiz) => quiz.id === id);
     if (!quizToArchive) return;
 
     // Remove from published quizzes
-    const updatedPublishedQuizzes = storedPublishedQuizzes.filter((quiz: Quiz) => quiz.id !== id);
-    localStorage.setItem("publishedQuizzes", JSON.stringify(updatedPublishedQuizzes));
-
-    // Add to archived quizzes
-    const archivedQuizzes = JSON.parse(localStorage.getItem("archivedQuizzes") || "[]");
-    localStorage.setItem("archivedQuizzes", JSON.stringify([...archivedQuizzes, quizToArchive]));
-
-    // Update state
+    const updatedPublishedQuizzes = quizzes.filter((quiz) => quiz.id !== id);
     setQuizzes(updatedPublishedQuizzes);
+
+    // Update MongoDB instead of localStorage
+    await fetch('/api/quiz/archive', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(quizToArchive),
+    });
   };
 
   return (

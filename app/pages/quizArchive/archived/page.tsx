@@ -12,17 +12,25 @@ const ArchivedQuizzes = () => {
   const { isDarkMode } = useTheme();
 
   useEffect(() => {
-    const storedQuizzes = localStorage.getItem("archivedQuizzes");
-    if (storedQuizzes) {
-      setQuizzes(JSON.parse(storedQuizzes));
-    }
+    // Fetch data from MongoDB instead of localStorage
+    const fetchQuizzes = async () => {
+      const response = await fetch('/api/quiz/archived');
+      const data = await response.json();
+      setQuizzes(data);
+    };
+    fetchQuizzes();
   }, []);
 
   // Delete a quiz permanently
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: number) => {
     const updatedQuizzes = quizzes.filter((quiz) => quiz.id !== id);
     setQuizzes(updatedQuizzes);
-    localStorage.setItem("archivedQuizzes", JSON.stringify(updatedQuizzes));
+    // Update MongoDB instead of localStorage
+    await fetch('/api/quiz/archived', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
   };
 
   return (

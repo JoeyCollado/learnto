@@ -10,23 +10,19 @@ const Page = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === "dark");
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    } else {
-      setIsDarkMode(prefersDarkMode);
-      document.documentElement.classList.toggle("dark", prefersDarkMode);
-    }
+    // Fetch theme from MongoDB instead of localStorage
+    const fetchTheme = async () => {
+      const response = await fetch('/api/theme');
+      const data = await response.json();
+      setIsDarkMode(data.theme === "dark");
+      document.documentElement.classList.toggle("dark", data.theme === "dark");
+    };
+    fetchTheme();
   }, []);
 
   return (
     <>
-      <Navbar isDarkMode={isDarkMode}/>
+      <Navbar />
       <div className="md:text-7xl text-5xl text-center mt-20 h-screen">
         LearnTo
       </div>

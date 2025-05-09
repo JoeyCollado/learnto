@@ -1,16 +1,23 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTheme } from "@/app/components/theme-context";
-
 
 const AddQuestion = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const quizId = searchParams.get('quizId');
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState([""]);
   const [correctOption, setCorrectOption] = useState<number | null>(null);
   const {isDarkMode} = useTheme();
+
+  useEffect(() => {
+    if (!quizId) {
+      router.push('/pages/quizCreate');
+    }
+  }, [quizId, router]);
 
   const handleAddOption = () => {
     setOptions([...options, ""]);
@@ -33,24 +40,28 @@ const AddQuestion = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    if (!quizId) return;
+    
     if (!question.trim() || options.some((opt) => !opt.trim()) || correctOption === null) {
       alert("Please fill in all fields and select a correct answer.");
       return;
     }
 
     const newQuestion = {
-      id: Date.now(),
       question,
       options,
       correctAnswer: options[correctOption],
+      quizId
     };
 
-    const savedQuestions = JSON.parse(localStorage.getItem("questions") || "[]");
-    savedQuestions.push(newQuestion);
-    localStorage.setItem("questions", JSON.stringify(savedQuestions));
+    await fetch('/api/quiz/questions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newQuestion),
+    });
 
-    router.push("/pages/quizCreate");
+    router.push(`/pages/quizCreate?quizId=${quizId}`);
   };
 
   return (
@@ -66,7 +77,6 @@ const AddQuestion = () => {
         className="w-[80%] p-2 rounded-md mb-3 border border-gray-300 focus:border-blue-500 outline-none"
       />
 
-      {/* Instruction for selecting a correct answer */}
       <p className="mb-2 text-gray-200 font-semibold">Click an option to select the correct answer.</p>
 
       {options.map((opt, index) => (
@@ -98,7 +108,10 @@ const AddQuestion = () => {
         </div>
       ))}
 
-      <button className="bg-green-600 hover:bg-green-500 px-4 py-2 rounded-md mt-2 text-white" onClick={handleAddOption}>
+      <button
+        className="bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded-md mt-2 text-white"
+        onClick={handleAddOption}
+      >
         + Add Option
       </button>
 
@@ -106,7 +119,10 @@ const AddQuestion = () => {
         ✅ Save Question
       </button>
 
-      <button className="bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md mt-2 text-white" onClick={() => router.push("/pages/quizCreate")}>
+      <button 
+        className="bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md mt-2 text-white" 
+        onClick={() => router.push(`/pages/quizCreate?quizId=${quizId}`)}
+      >
         ❌ Cancel
       </button>
     </div>
