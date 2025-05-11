@@ -20,26 +20,9 @@ const Page = () => {
 
   useEffect(() => {
     // Get quizId from URL or create new quiz
-    const existingQuizId = searchParams.get('quizId');
-    if (existingQuizId === 'null' || existingQuizId === null) {
-      router.replace('/pages/quizCreate');
-      return;
-    }
-    if (existingQuizId) {
-      setQuizId(existingQuizId);
-      // Fetch existing quiz data
-      const fetchQuiz = async () => {
-        const response = await fetch(`/api/quiz?id=${existingQuizId}`);
-        const data = await response.json();
-        if (data) {
-          setQuizTitle(data.title || '');
-          setQuizSubject(data.subject || '');
-          setTimeLimit(data.time || '');
-        }
-      };
-      fetchQuiz();
-    } else {
-      // Create new quiz only if no quizId exists
+    const existingQuizId = searchParams?.get('quizId') ?? null;
+    if (!existingQuizId || existingQuizId === 'null') {
+      // Create new draft quiz if no quizId exists
       const createNewQuiz = async () => {
         const response = await fetch('/api/quiz', {
           method: 'POST',
@@ -61,7 +44,20 @@ const Page = () => {
         }
       };
       createNewQuiz();
+      return;
     }
+    setQuizId(existingQuizId);
+    // Fetch existing quiz data
+    const fetchQuiz = async () => {
+      const response = await fetch(`/api/quiz?id=${existingQuizId}`);
+      const data = await response.json();
+      if (data) {
+        setQuizTitle(data.title || '');
+        setQuizSubject(data.subject || '');
+        setTimeLimit(data.time || '');
+      }
+    };
+    fetchQuiz();
   }, [searchParams, router]);
 
   useEffect(() => {
@@ -232,7 +228,14 @@ const Page = () => {
       <div className="flex justify-center mt-4">
         <button
           className="bg-orange-600 hover:bg-orange-500 px-2 rounded-md py-1"
-          onClick={() => router.push(`/pages/quizCreate/addQuestion?quizId=${quizId}`)}
+          disabled={!quizId || quizId === "null"}
+          onClick={() => {
+            if (quizId && quizId !== "null") {
+              router.push(`/pages/quizCreate/addQuestion?quizId=${quizId}`);
+            } else {
+              alert("Please create or select a quiz first!");
+            }
+          }}
         >
           Add Questions
         </button>
